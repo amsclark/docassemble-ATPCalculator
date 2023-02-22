@@ -1,0 +1,32 @@
+id: atp_basic_info
+question: |
+  Iowa Ability to Pay Calculator - Basic Information
+subquestion: |
+  Please fill in the fields below related to the defendant's case and financial circumstances. 
+progress: 20
+fields:
+  - First Name: first_name
+  - Middle Name: middle_name
+    required: false
+  - Last Name: last_name
+  - Suffix: suffix
+    required: false
+  - County: county
+    input type: dropdown
+    code: get_county_names()
+  - Is Defendant 65 years of age or older?: sixty_five_or_older
+    datatype: yesnoradio
+  - Household Size: household_size
+    datatype: integer
+    min: 1
+  - Number of Cars: number_of_cars
+    input type: dropdown
+    code: number_cars_options
+  - Fine/Penalty Balance: fine_penalty_balance
+    datatype: currency
+    min: ${ min_penalty }
+  - Earned Income: has_ei
+    datatype: yesnoradio
+  - Other Income: has_oi
+    datatype: yesnoradio
+continue button field: basic_info

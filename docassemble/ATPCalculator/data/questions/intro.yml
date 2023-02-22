@@ -1,0 +1,31 @@
+id: atp_intro
+question: Iowa Ability to Pay Calculator
+progress: 5
+subquestion: |
+  Under Iowa law, some people are assessed "court debt" – i.e. debt people owe due to their involvement in a criminal, civil, or juvenile case. This can include fines and victim restitution, but also a range of fees for the services of a court, a jail, or appointed defense counsel. Much of these fees in the latter category of debt are only supposed to be charged if the person has the "ability to pay."
+  
+  Even though the law requires an ability to pay assessment, it doesn't provide much guidance on what that means. This calculator attempts to make the issue more concrete by borrowing a long-standing model from the Internal Revenue Service – the [collection financial standards](https://www.irs.gov/businesses/small-businesses-self-employed/collection-financial-standards). This standards are based on periodically updated data from a number of federal agencies about costs of housing, food, medicine, transportation, and other important costs. This data gives a picture of the realistic costs of maintaining basic household necessities without requiring a defendant, their lawyer, or the court to go through a mountain of documentation.
+  
+  This calculator is a demo, and the final version will be tentatively be released and hosted elsewhere later in 2022. Please email Alex Kornya at [akornya@iowalaw.org](mailto:akornya@iowalaw.org) or text to (515) 400-3618 if you have any feedback about how the final version of the calculator could be better.
+  
+  # Who can use this calculator?
+  
+  * A person who is a defendant in a criminal, civil, or juvenile case
+  * An attorney representing someone in a criminal, civil, or juvenile case
+  * A prosecutor seeking a position on ability to pay based on data and objective information
+  * A justice, judge, or magistrate
+  * Members of the media
+  * The general public 
+  * Literally anyone who wants a realistic, objective, and evidence-based estimate of what someone may be able to pay without hardship
+  
+  # How to use this calculator
+  
+  This calculator has **two parts** – one required, and one optional. 
+  
+  * The first part is an ability to pay calculator, which uses the [collection financial standards](https://www.irs.gov/businesses/small-businesses-self-employed/collection-financial-standards) established by the Internal Revenue Service to decide whether to take collection action against people who owe federal taxes. <strong><span style="color: green">This part of the process should take between 3 and 5 minutes to complete.</span></strong>
+  
+  * The second, optional part of the interview will create an **editable financial affidavit** that is required when asking to reduce some court debt assessed as part of a criminal conviction. This affidavit can be filed directly with court. Alternatively, a lawyer can ask their client to fill out the affidavit and then have the program email the document to the lawyer for review. <strong><span style="color: green">This should take an additional 5 to 10 minutes to complete.</span></strong>
+  
+  This software was developed by Iowa Legal Aid in partnership with Clark Management Consulting under an open source license. For a copy of the source code, please contact Iowa Legal Aid or Clark Management Consulting.
+
+continue button field: intro

@@ -1,0 +1,46 @@
+id: exhibit_gen
+progress: 100
+email address default: | 
+  ${ attorney_email }
+question: |
+  Iowa Ability to Pay Calculator - Documents Generated
+subquestion: |
+  All done. You may download your file below. Click "restart" if you would like to generate document(s) for another defendant. 
+attachment:
+  name: Ability to Pay Worksheet
+  filename: Ability_To_Pay_Worksheet
+  docx template file: Exhibit_Template.docx
+  valid formats:
+    - pdf
+    - docx
+sets: exhibit_gen
+buttons:
+  - Restart: restart
+---
+id: exhibit_aff_gen
+progress: 100
+email address default: | 
+  ${ attorney_email }
+question: |
+  Iowa Ability to Pay Calculator - Documents Generated
+subquestion: |
+  All done. You may download your file below. Click "restart" if you would like to generate document(s) for another defendant. 
+attachments:
+  - name: Ability to Pay Worksheet
+    filename: Ability_To_Pay_Worksheet
+    docx template file: Exhibit_Template.docx
+    valid formats:
+      - pdf
+      - docx
+  - name: ATP Financial Affidavit
+    filename: ATP_Financial_Affidavit
+    docx template file: ATP_Financial_Affidavit.docx
+    valid formats:
+      - docx
+      - pdf
+sets: exhibit_aff_gen
+buttons:
+  - Restart: restart
+---
+code: |
+  attorney_email = aff_atty_email if defined('aff_atty_email') else ''

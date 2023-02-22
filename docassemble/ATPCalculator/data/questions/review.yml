@@ -1,0 +1,68 @@
+id: atp_review
+question: Iowa Ability to Pay Calculator - Review
+progress: 95
+subquestion: |
+  Based on the information provided, including a fine/penalty balance of $${ round(fine_penalty_balance, 2) }, monthly income of $${ round((earned_income_total + other_income_totals), 2) } and expenses of $${ round(all_expenses, 2) }, the suggested monthly repayment is $${ round(installment_rap, 2) }. After ${ round(number_payments, 2) } months of payment of this amount, the defendant will have repaid ${ round(amount_repaid, 2) }.
+review:
+  - Revisit basic information: basic_info
+    button: |
+      <ul><li>You said the defendant's name was ${ first_name } ${ " " + middle_name if len(middle_name) > 0 else "" }${ " " + last_name }${ " " + suffix if len(suffix) > 0 else "" }.</li><li>You indicated the defendant lived in ${ county } and ${ "is" if sixty_five_or_older else "is not" } sixty-five years of age or older.</li><li>You indicated the defendant has ${ nice_number(household_size) } people in their household (including themselves) and ${ (nice_number(int(number_of_cars)) if int(number_of_cars) == 1 else "two or more") if int(number_of_cars) > 0 else "no"} vehicles.</li><li> On the basic information page, you indicated the defendant's fine/penalty balance for reasonable ability to pay calculation was $${ round(fine_penalty_balance, 2) }.</li></ul>
+  - Revisit earned income information: jobs[0].name.text
+    button: |
+      You said the defendant earned $${round(earned_income_total,2)} per month (gross) working at ${ get_employer_list(jobs) }.
+  - Revisit other income information: not_jobs[0].name.text
+    button: |
+      You said the defendant had the following monthly income from sources other than work: <ul><li>${ '</li><li>'.join(re.split(',|and', get_other_income_list(not_jobs, oi_labels))) }</li></ul>
+  - Revisit expenses: expenses
+    button: |
+      You said the defendant had the following expenses: <ul><li>${ '</li><li>'.join( re.split(',', get_monthly_expenses_text(monthly_food, monthly_housekeeping, monthly_apparel_and_service, monthly_personal_care, monthly_misc, monthly_operating, monthly_ownership, monthly_public_transit, monthly_housing, monthly_basic_utils, monthly_telecom_utils, monthly_real_estate_taxes_insurance, monthly_maint_repairs, monthly_housing_utils_total, monthly_health_insurance, monthly_oop_healthcare, monthly_medical_expenses, monthly_child_dependent_care, monthly_fica, monthly_est_tax_payments, monthly_term_life_insurance, monthly_retirement_required, monthly_retirement_voluntary, monthly_union_dues, monthly_other))) }</li></ul>
+  - Revisit affidavit questions: gen_aff_questions
+    button: |
+      You provided the following information for the Financial Affidavit for Reasonable Ability to Pay Determination for Category B Restitution: <ul>
+      <li>County: ${ aff_county }</li>
+      <li>Case Number: ${ aff_case_num}</li>
+      <li>Plaintiff: ${ aff_plaintiff}</li>
+      <li>Defendant Name: ${ aff_def_name}</li>
+      <li>Date of Birth: ${ aff_dob }</li>
+      <li>Prior Convictions: ${ yesno(aff_priors) }</li>
+      <li>Other Restitution Details: ${aff_other_restitution_details}</li>
+      <li>Total restitution owed in this case: ${ aff_rest_total }</li>
+      <li>Defendant's highest level of education: ${ aff_highest_ed }</li>
+      <li>Is the defendant employed? ${ yesno(aff_employed) }</li>
+      <li>Defendant's current employer: ${aff_cemployer}</li>
+      <li>Date current employment began: ${aff_current_employment_start}</li>
+      <li>Does the defendant work full-time, part-time or seasonally? ${ aff_lt_fulltime }</li>
+      <li>How many hours per week or months per year does the defendant work?: ${ aff_pt_hours }</li>
+      <li>Defendant's take-home pay: ${ aff_takehome_pay }</li>
+      <li>Pay frequency: ${ aff_takehome_freq }</li>
+      <li>Other source of income: ${ aff_other_income }</li>
+      <li>Amounts owed monthly: ${ aff_monthly_debts }</li>
+      <li>Monthly expenses: ${ aff_monthly_expenses }</li>
+      <li>Number of dependents: ${ aff_dependents }</li>
+      <li>Unpaid judgments: ${ yesno(aff_unpaid_judgments) }</li>
+      <li>Unpaid judgments amount: ${ aff_unpaid_judgments_amount }</li>
+      <li>Garnishment: ${ yesno(aff_garnish) }</li>
+      <li>Garnishment details: ${ aff_garnish_details }</li>
+      <li>Assets worth more than $100: ${ aff_assets }</li>
+      <li>List of all outstanding debts: ${ aff_outstanding_debts }</li>
+      <li>Does the defendant expect to receive any significant money or property in the near future? ${ yesno(aff_future_windfall) }</li>
+      <li>Details of that future-expected money or property: ${ aff_windfall_details }</li>
+      <li>Special personal circumstances: ${ aff_personal_circumstances }</li>
+      <li>Additional information to be considered: ${ aff_additional_information }</li>
+      <li>Attorney (or Firm) Name: ${ aff_atty_name }</li>
+      <li>Attorney Street Address: ${ aff_atty_street }</li>
+      <li>Attorney City: ${ aff_atty_city }</li>
+      <li>Attorney State: ${ aff_atty_state }</li>
+      <li>Attorney Zip: ${ aff_atty_zip }</li>
+      <li>Attorney Phone: ${ aff_atty_phone }</li>
+      <li>Attorney Fax: ${ aff_atty_fax }</li>
+      <li>Attorney Email: ${ aff_atty_email }</li>
+      <li>Defendant Street Address: ${ aff_def_street }</li>
+      <li>Defendant City: ${ aff_def_city }</li>
+      <li>Defendant State: ${ aff_def_state }</li>
+      <li>Defendant Zip: ${ aff_def_zip }</li>
+      <li>Defendant Phone: ${ aff_def_phone }</li>
+      <li>Defendant Fax: ${ aff_def_fax }</li>
+      <li>Defendant Email: ${ aff_def_email }</li>
+      </ul>
+continue button field: review

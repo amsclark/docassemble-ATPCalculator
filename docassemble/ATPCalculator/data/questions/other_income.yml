@@ -1,0 +1,21 @@
+---
+id: atp_other_income
+question: Iowa Ability to Pay Calculator - Other Income
+progress: 40
+subquestion: | 
+  Please enter all of the defendant's income from sources other than working. Please enter gross amounts before any taxes or other deductions are subtracted. Tax and other deduction information will be collected and factored in on another page. 
+fields: 
+  - Income Source: not_jobs[i].name.text
+    input type: dropdown
+    choices: 
+      - SSI/SSD/SS Retirement: inc_SS
+      - Unemployment: inc_unemp
+      - VA Benefits: inc_VA
+      - TANF/FIP: inc_tanf
+      - Pension: inc_pens
+      - SNAP: inc_snap
+      - Alimony: inc_alim
+      - Investment / int. / rent: inc_invest
+  - Gross Monthly Income: not_jobs[i].amount
+    datatype: currency
+list collect: True

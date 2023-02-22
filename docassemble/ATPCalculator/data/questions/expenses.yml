@@ -1,0 +1,173 @@
+id: atp_expenses
+question: Iowa Ability to Pay Calculator - Expenses
+progress: 70
+subquestion: | 
+  The form below has populated with a basic allowance based on the information you have already provided. <strong>You only need to change a number in the form below if you pay <span style="text-decoration: underline;">more</span> per month than the number already in the blank</strong>.
+script: |
+  <script>
+    // docassemble html input field names are base64 encodings of the underlying interview variable name
+    // bW9udGhseV9ob3VzaW5n is monthly_housing
+    // bW9udGhseV9iYXNpY191dGlscw is monthly_basic_utils
+    // bW9udGhseV90ZWxlY29tX3V0aWxz is monthly_telecom_utils
+    // bW9udGhseV9yZWFsX2VzdGF0ZV90YXhlc19pbnN1cmFuY2U is monthly_real_estate_taxes_insurance
+    // bW9udGhseV9tYWludF9yZXBhaXJz is monthly_maint_repairs
+    // bW9udGhseV9ob3VzaW5nX3V0aWxzX3RvdGFs is monthly_housing_utils_total
+    document.querySelectorAll("#bW9udGhseV9ob3VzaW5n, #bW9udGhseV9iYXNpY191dGlscw, #bW9udGhseV90ZWxlY29tX3V0aWxz, #bW9udGhseV9yZWFsX2VzdGF0ZV90YXhlc19pbnN1cmFuY2U, #bW9udGhseV9tYWludF9yZXBhaXJz, #bW9udGhseV9ob3VzaW5nX3V0aWxzX3RvdGFs").forEach(item => {
+      item.addEventListener('change', event => {
+        document.getElementById("bW9udGhseV9ob3VzaW5nX3V0aWxzX3RvdGFs").value =  Number(document.getElementById("bW9udGhseV9ob3VzaW5n").value) + Number(document.getElementById("bW9udGhseV9iYXNpY191dGlscw").value) +  Number(document.getElementById("bW9udGhseV90ZWxlY29tX3V0aWxz").value) + Number(document.getElementById("bW9udGhseV9yZWFsX2VzdGF0ZV90YXhlc19pbnN1cmFuY2U").value) + Number(document.getElementById("bW9udGhseV9tYWludF9yZXBhaXJz").value)
+      })
+    })
+  </script>
+fields:
+  - note: |
+      <hr>Food/Personal Care <hr>
+  - Food: monthly_food
+    default: ${ round(get_food_personal_care(food, household_size), 2) }
+    hint: ${ round(get_food_personal_care(food, household_size), 2) }
+    min: ${ round(get_food_personal_care(food, household_size), 2) } 
+    datatype: currency
+    note: Food, clothing and other item expenses are based on household size and the <a href="https://www.irs.gov/businesses/small-businesses-self-employed/national-standards-food-clothing-and-other-items">IRS standards.</a> If the defendant's actual monthly expenses are higher than the standard amounts, revise the pre-filled figures upward.
+  - Housekeeping: monthly_housekeeping
+    default: ${ round(get_food_personal_care(housekeeping, household_size), 2) } 
+    hint: ${ round(get_food_personal_care(housekeeping, household_size), 2) } 
+    min: ${ round(get_food_personal_care(housekeeping, household_size), 2) } 
+    datatype: currency
+  - Apparel & Services: monthly_apparel_and_service
+    default: ${ round(get_food_personal_care(apparel_and_services, household_size), 2) } 
+    hint: ${ round(get_food_personal_care(apparel_and_services, household_size), 2) } 
+    min: ${ round(get_food_personal_care(apparel_and_services, household_size), 2) } 
+    datatype: currency
+  - Personal Care: monthly_personal_care
+    default: ${ round(get_food_personal_care(personal_care, household_size), 2) } 
+    hint: ${ round(get_food_personal_care(personal_care, household_size), 2) } 
+    min: ${ round(get_food_personal_care(personal_care, household_size), 2) } 
+    datatype: currency
+  - Miscellaneous: monthly_misc
+    default: ${ round(get_food_personal_care(miscellaneous, household_size), 2) } 
+    hint: ${ round(get_food_personal_care(miscellaneous, household_size), 2) } 
+    min: ${ round(get_food_personal_care(miscellaneous, household_size), 2) } 
+    datatype: currency
+  - note: |
+      <hr>Transportation <hr>
+  - Operating: monthly_operating
+    default: ${ round(car_operating[number_of_cars], 2) }
+    hint: ${ round(car_operating[number_of_cars], 2) }
+    min: ${ round(car_operating[number_of_cars], 2) }
+    datatype: currency
+    note: Standard vehicle ownership and operating costs for 1 or 2 vehicles are derived from the <a href="https://www.irs.gov/businesses/small-businesses-self-employed/local-standards-transportation">IRS Local Standard for Transportation.</a>
+  - Ownership: monthly_ownership
+    default: ${ round(car_ownership[number_of_cars], 2) }
+    hint: ${ round(car_ownership[number_of_cars], 2) }
+    min: ${ round(car_ownership[number_of_cars], 2) }
+    datatype: currency
+  - Public Transportation: monthly_public_transit
+    min: 0
+    default: ${ 217.00 if int(number_of_cars) < 1 else 0 }
+    hint: ${ 217.00 if int(number_of_cars) < 1 else 0 }
+    datatype: currency
+  - note: |
+      <hr>Housing & Utilities <hr>
+  - Rent/Mortgage/Housing Payment: monthly_housing
+    min: 0
+    default: 0
+    datatype: currency
+    note: The pre-filled figure of $${ round(total_housing_allowance, 2) } in the "Total" field is based on standard figures for household sizes of one, two, three, four, and five or more <a href="https://www.irs.gov/businesses/small-businesses-self-employed/iowa-local-standards-housing-and-utilities"> published by the IRS</a> and varies by county. If the defendant's actual housing and utility costs are higher, the individual fields should be filled in and the total will update.
+  - Electric, oil/gas, Water/Trash: monthly_basic_utils
+    min: 0
+    default: 0
+    datatype: currency
+  - Phone/cell/cable/internet: monthly_telecom_utils
+    min: 0
+    default: 0
+    datatype: currency
+  - Real estate taxes & insurance: monthly_real_estate_taxes_insurance
+    min: 0
+    default: 0
+    datatype: currency
+  - Maintenance & Repairs: monthly_maint_repairs
+    min: 0
+    default: 0
+    datatype: currency
+  - Total: monthly_housing_utils_total
+    datatype: currency
+    default: ${ round(total_housing_allowance, 2) }
+    hint: ${ round(total_housing_allowance, 2) }
+    min: ${ round(total_housing_allowance, 2) }
+  - note: |
+      <hr>Medical <hr>
+  - Health Insurance: monthly_health_insurance
+    datatype: currency
+    min: 0
+    default: 0
+  - Out of pocket health care: monthly_oop_healthcare
+    datatype: currency
+    min: ${ round(get_oop_allowance(sixty_five_or_older), 2) }
+    default: ${ round(get_oop_allowance(sixty_five_or_older), ) }
+    hint: ${ round(get_oop_allowance(sixty_five_or_older), ) }
+    note: Monthly out of pocket healthcare allowances are based on whether the defendant is 65 years of age or older and are derived from the <a href="https://www.irs.gov/businesses/small-businesses-self-employed/national-standards-out-of-pocket-health-care">IRS Standards</a>
+  - Expenses: monthly_medical_expenses
+    datatype: currency
+    min: 0
+    default: 0
+  - note: |
+      <hr>Other <hr>
+  - Child / dependent care: monthly_child_dependent_care
+    default: 0
+    min: 0
+    datatype: currency
+  - FICA: monthly_fica
+    default: ${ round(FICA, 2) }
+    hint: ${ round(FICA, 2) }
+    min: ${ round(FICA, 2) }
+    note: FICA calculation is based on ${ round((FICA_rate * 100), 2) }%, which is the employee's portion. If the defendant is self-employed and paying both the employer and employee halves of FICA, this figure need to be manually adjusted. 
+    datatype: currency
+  - Estimated tax payments: monthly_est_tax_payments
+    default: 0
+    min: 0
+    datatype: currency
+  - Term life insurance: monthly_term_life_insurance
+    default: 0
+    min: 0
+    datatype: currency
+  - Retirement (employer required): monthly_retirement_required
+    default: 0
+    min: 0
+    datatype: currency
+  - Retirement (voluntary): monthly_retirement_voluntary
+    default: 0
+    min: 0  
+    datatype: currency
+  - Union dues: monthly_union_dues
+    default: 0
+    min: 0  
+    datatype: currency
+  - Delinquent taxes: monthly_delinquent_taxes
+    default: 0
+    min: 0  
+    datatype: currency
+  - Student loans (minimum payment): monthly_student_loans
+    default: 0
+    min: 0  
+    datatype: currency
+  - Court ordered child support: monthly_child_support
+    default: 0
+    min: 0  
+    datatype: currency
+  - Court ordered spousal support: monthly_alimony
+    default: 0
+    min: 0  
+    datatype: currency
+  - Other court debt payments: monthly_court_debt_payments
+    default: 0
+    min: 0
+    datatype: currency
+  - Other: monthly_other
+    default: 0
+    min: 0
+    datatype: currency
+  - note: |
+      <hr>Iowa Code 910.1(1A) Affidavit <hr>
+  - Generate Affidavit: gen_aff
+    datatype: yesnoradio
+    note: By default this application will only generate a reasonable ability to pay calculation worksheet. If you would like to also generate a supporting "Financial Affidavit for Reasonable Ability to Pay Determination for Category B Restitution" under Iowa Code 910.1(1A), select "Yes" here.
+continue button field: expenses

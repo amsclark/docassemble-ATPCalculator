@@ -71,7 +71,7 @@ fields:
     min: 0
     default: 0
     datatype: currency
-    note: The pre-filled figure of $${ round(total_housing_allowance, 2) } in the "Total" field is based on standard figures for household sizes of one, two, three, four, and five or more <a href="https://www.irs.gov/businesses/small-businesses-self-employed/iowa-local-standards-housing-and-utilities"> published by the IRS</a> and varies by county. If the defendant's actual housing and utility costs are higher, the individual fields should be filled in and the total will update.
+    note: <b>Do not change this section unless the defendant's total housing and utility costs are higher than $${ round(total_housing_allowance, 2) }. </b> The pre-filled figure of $${ round(total_housing_allowance, 2) } in the "Total" field is based on standard figures for household sizes of one, two, three, four, and five or more <a href="https://www.irs.gov/businesses/small-businesses-self-employed/iowa-local-standards-housing-and-utilities"> published by the IRS</a> and varies by county. <b>If the defendant's total housing and utility costs are higher than $${ round(total_housing_allowance, 2) }, the individual fields should be changed and the total will update.</b>
   - Electric, oil/gas, Water/Trash: monthly_basic_utils
     min: 0
     default: 0

@@ -2,7 +2,7 @@ id: atp_expenses
 question: Iowa Ability to Pay Calculator - Expenses
 progress: 70
 subquestion: | 
-  The form below has populated with a basic allowance based on the information you have already provided. <strong>You only need to change a number in the form below if you pay <span style="text-decoration: underline;">more</span> per month than the number already in the blank</strong>.
+  The form below already has a starting amount filling in based on the information you provided. <strong>You only need to change a number in the form below if you pay <span style="text-decoration: underline;">more</span> per month than the number written.</strong>
 script: |
   <script>
     // docassemble html input field names are base64 encodings of the underlying interview variable name
@@ -26,7 +26,7 @@ fields:
     hint: ${ round(get_food_personal_care(food, household_size), 2) }
     min: ${ round(get_food_personal_care(food, household_size), 2) } 
     datatype: currency
-    note: Food, clothing and other item expenses are based on household size and the <a href="https://www.irs.gov/businesses/small-businesses-self-employed/national-standards-food-clothing-and-other-items">IRS standards.</a> If the defendant's actual monthly expenses are higher than the standard amounts, revise the pre-filled figures upward.
+    note: The money you spend on food, clothing and other things depends on how many people live in your household. We use <a href="https://www.irs.gov/businesses/small-businesses-self-employed/national-standards-food-clothing-and-other-items">guidelines from the IRS</a> to estimate these costs. If your actual monthly expenses are higher than amount already filled in, you can change the numbers to reflect your higher expenses.
   - Housekeeping: monthly_housekeeping
     default: ${ round(get_food_personal_care(housekeeping, household_size), 2) } 
     hint: ${ round(get_food_personal_care(housekeeping, household_size), 2) } 
@@ -54,7 +54,7 @@ fields:
     hint: ${ round(car_operating[number_of_cars], 2) }
     min: ${ round(car_operating[number_of_cars], 2) }
     datatype: currency
-    note: Standard vehicle ownership and operating costs for 1 or 2 vehicles are derived from the <a href="https://www.irs.gov/businesses/small-businesses-self-employed/local-standards-transportation">IRS Local Standard for Transportation.</a>
+    note: We determine the typical costs of owning and using a vehicle based on guideslins from the IRS. These guidelines are called the <a href="https://www.irs.gov/businesses/small-businesses-self-employed/local-standards-transportation">IRS Local Standard for Transportation.</a>. They help us understand how much it usually costs to have one or two vehicles. 
   - Ownership: monthly_ownership
     default: ${ round(car_ownership[number_of_cars], 2) }
     hint: ${ round(car_ownership[number_of_cars], 2) }
@@ -71,7 +71,7 @@ fields:
     min: 0
     default: 0
     datatype: currency
-    note: <b>Do not change this section unless the defendant's total housing and utility costs are higher than $${ round(total_housing_allowance, 2) }. </b> The pre-filled figure of $${ round(total_housing_allowance, 2) } in the "Total" field is based on standard figures for household sizes of one, two, three, four, and five or more <a href="https://www.irs.gov/businesses/small-businesses-self-employed/iowa-local-standards-housing-and-utilities"> published by the IRS</a> and varies by county. <b>If the defendant's total housing and utility costs are higher than $${ round(total_housing_allowance, 2) }, the individual fields should be changed and the total will update.</b>
+    note: <b>Do not change this section unless the person's total housing and utility costs are higher than $${ round(total_housing_allowance, 2) }. </b> The pre-filled figure of $${ round(total_housing_allowance, 2) } in the "Total" field is based on standard figures for household sizes of one, two, three, four, and five or more <a href="https://www.irs.gov/businesses/small-businesses-self-employed/iowa-local-standards-housing-and-utilities"> published by the IRS</a> and varies by county. <b>If the person's total housing and utility costs are higher than $${ round(total_housing_allowance, 2) }, the individual fields should be changed and the total will update.</b>
   - Electric, oil/gas, Water/Trash: monthly_basic_utils
     min: 0
     default: 0
@@ -104,7 +104,7 @@ fields:
     min: ${ round(get_oop_allowance(sixty_five_or_older), 2) }
     default: ${ round(get_oop_allowance(sixty_five_or_older), ) }
     hint: ${ round(get_oop_allowance(sixty_five_or_older), ) }
-    note: Monthly out of pocket healthcare allowances are based on whether the defendant is 65 years of age or older and are derived from the <a href="https://www.irs.gov/businesses/small-businesses-self-employed/national-standards-out-of-pocket-health-care">IRS Standards</a>
+    note: The amount of money you can spend on healthcare each month depends on whether you're 65 years old or older. We use guidelines from the IRS to figure out this allowance. These guidelines are called the <a href="https://www.irs.gov/businesses/small-businesses-self-employed/national-standards-out-of-pocket-health-care">IRS Standards for Out of Pocket Health Care.</a>
   - Expenses: monthly_medical_expenses
     datatype: currency
     min: 0
@@ -119,7 +119,7 @@ fields:
     default: ${ round(FICA, 2) }
     hint: ${ round(FICA, 2) }
     min: ${ round(FICA, 2) }
-    note: FICA calculation is based on ${ round((FICA_rate * 100), 2) }%, which is the employee's portion. If the defendant is self-employed and paying both the employer and employee halves of FICA, this figure need to be manually adjusted. 
+    note: FICA calculation is based on ${ round((FICA_rate * 100), 2) }%, which is the employee's portion. If the person is self-employed and paying both the employer and employee halves of FICA, this figure need to be manually adjusted. 
     datatype: currency
   - Estimated tax payments: monthly_est_tax_payments
     default: 0
@@ -169,5 +169,5 @@ fields:
       <hr>Iowa Code 910.1(1A) Affidavit <hr>
   - Generate Affidavit: gen_aff
     datatype: yesnoradio
-    note: By default this application will only generate a reasonable ability to pay calculation worksheet. If you would like to also generate a supporting "Financial Affidavit for Reasonable Ability to Pay Determination for Category B Restitution" under Iowa Code 910.1(1A), select "Yes" here.
+    note: By default this application will only generate a worksheet that calculates a reasonable estimation of your ability to pay. If you would like to also generate a supporting document called the "Financial Affidavit for Reasonable Ability to Pay Determination for Category B Restitution" under Iowa Code 910.1(1A), select "Yes" here.
 continue button field: expenses

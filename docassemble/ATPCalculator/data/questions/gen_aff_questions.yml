@@ -3,14 +3,14 @@ question: |
   Financial Affidavit for Reasonable Ability to Pay Determination for Category B Restitution
 #continue button field: gen_aff_questions
 subquestion: |
-  Please complete the questions below, according to the defendant's circumstances. For some questions, the field may be pre-filled with responses from the first part of this document assembly tool. All pre-filled information should be re-reviewed with the defendant for accuracy and responsivenes to the specific phrasing of questions asked in this section. 
+  Please answer the questions below based on the person's situation. In some cases, the answers may already be filled in from earlier in this tool. Make sure to review all the filled-in information with the person to make sure it's accurate and matches the specific wording of the questions in this section. 
 progress: 80
 fields: 
   - County: aff_county
     default: ${ county }
     input type: dropdown
     code: get_county_names()
-    note: This value is pre-filled based on the client's current county of residence. This may differ from the county their case was filed in.
+    note: This value is already filled in based on where the client currently lives. It might be different from the county where their case was filed.
   - Case Number: aff_case_num
   - Plaintiff/Petitioner Name: aff_plaintiff
     default: State of Iowa
@@ -19,7 +19,7 @@ fields:
   - Defendant Date of Birth: aff_dob
     datatype: date
   - note: |
-      Does defendant have any prior convictions, in Iowa or elsewhere, that require them to pay any fines, penalties, victim restitution, or other monetary amounts that have not been paid in full?
+      Has the person been convicted of any previous crimes in Iowa or anywhere else that resulted in them owing fines, penalties, victim restitution, or other money that hasn't been fully paid yet?
   - Other Convictions: aff_priors
     datatype: yesnoradio
   - note: What is the total amount that is unpaid? If you have a payment plan set up with the court, what are your monthly payments?
@@ -27,10 +27,10 @@ fields:
   - Other Restitution Details: aff_other_restitution_details
     input type: area
     show if: aff_priors
-  - Total amount of restitution owed in this case, if any has been ordered: aff_rest_total
+  - If any restitution has been ordered in this case, please provide the total amount of money that is owed: aff_rest_total
     default: ${ fine_penalty_balance }
     datatype: currency
-  - What is the defendant's highest level of education obtained?: aff_highest_ed
+  - What is the highest level of education the person has completed?: aff_highest_ed
     datatype: dropdown
     choices:
       - Did not complete high school
@@ -40,20 +40,20 @@ fields:
       - Bachelor's degree
       - Master's degree
       - PhD, M.d., J.D., or other advanced or professional degree
-  - Is the defendant employed?: aff_employed
+  - Is the person employed?: aff_employed
     datatype: yesnoradio
     default: 
       code: |
         True if has_ei else None
-  - List the defendant's employer: aff_cemployer
+  - List the person's employer: aff_cemployer
     show if: aff_employed
     default: 
       code: |
         get_employer_list(jobs) if defined('jobs[0].name.text') else ""
-  - List the date the defendant's current employment began: aff_current_employment_start
+  - List the date the person's current employment began: aff_current_employment_start
     datatype: date
     show if: aff_employed
-  - Does the defendant work full-time, part-time, or seasonally?: aff_lt_fulltime
+  - Does the person work full-time, part-time, or seasonally?: aff_lt_fulltime
     show if: aff_employed
     input type: dropdown
     default: Full-Time
@@ -61,18 +61,18 @@ fields:
       - Full-Time
       - Part-Time
       - Seasonal
-  - How many hours per week or months per year does the defendant work?: aff_pt_hours
+  - How many hours per week or months per year does the person work?: aff_pt_hours
     input type: area
     js show if:
         val("aff_employed") == true && val("aff_lt_fulltime") != "Full-Time"
-  - What is the defendant's current take-home pay?: aff_takehome_pay
+  - What is the person's current take-home pay?: aff_takehome_pay
     datatype: currency
     show if: aff_employed
     default:
       code: |
         earned_income_total - (monthly_health_insurance + monthly_fica + monthly_est_tax_payments + monthly_retirement_required + monthly_union_dues)
   - note: |
-      <div class="card"> <div class="card-body"><span style="color: red">Note: </span>The pre-filled figure for take-home pay shown in the field above was calculated as total monthly earned income of $${ earned_income_total } minus monthly health insurance ($${ monthly_health_insurance}), FICA ($${ monthly_fica}), estimated tax payments ($${ monthly_est_tax_payments}), employer-required retirement contributions ($${ monthly_retirement_required}), and union dues ($${ monthly_union_dues}). Please check accuracy against the defendant's actual paystubs.</div></div>
+      <div class="card"> <div class="card-body"><span style="color: red">Note: </span>The pre-filled figure for take-home pay shown in the field above was calculated as total monthly earned income of $${ earned_income_total } minus monthly health insurance ($${ monthly_health_insurance}), FICA ($${ monthly_fica}), estimated tax payments ($${ monthly_est_tax_payments}), employer-required retirement contributions ($${ monthly_retirement_required}), and union dues ($${ monthly_union_dues}). Please check accuracy against the person's actual paystubs.</div></div>
     show if: aff_employed
   - How often is the take-home pay figure indicated above paid?: aff_takehome_freq
     show if: aff_employed
@@ -91,20 +91,20 @@ fields:
       code: |
         get_other_income_list(not_jobs, oi_labels) if defined('not_jobs[0].name.text') else ""
     note: (e.g., social security, SSI, unemployment, etc)
-  - List amounts the defendant owes monthly: aff_monthly_debts
+  - List amounts the person owes monthly: aff_monthly_debts
     required: false
     input type: area
     default: ${ monthly_debts_text }
     note: (e.g., mortgage, rent, car loans, credit cards, utilities, child support, court debt, other debts)
-  - List any other expenses the defendant incurs on a monthly basis: aff_monthly_expenses
+  - Write down any other costs that the person has to pay every month: aff_monthly_expenses
     required: false
     input type: area
     default: ${ monthly_expenses_text }
     note: (e.g., child care, school expenses, medical expenses, food, clothing, transportation, etc.)
-  - How many dependents or family members are supported by or live with the defendant?: aff_dependents
+  - How many dependents or family members are supported by or live with the person?: aff_dependents
     default: ${ household_size - 1 }
     datatype: integer
-  - Does the defendant have any unpaid judgments against them?: aff_unpaid_judgments
+  - Does the person have any unpaid judgments against them?: aff_unpaid_judgments
     datatype: yesnoradio
     default:
       code: |
@@ -112,29 +112,29 @@ fields:
   - How much is owed on these judgments?: aff_unpaid_judgments_amount
     datatype: currency
     show if: aff_unpaid_judgments
-  - Are the defendant's wages being garnished?: aff_garnish
+  - Are the person's wages being garnished?: aff_garnish
     datatype: yesnoradio
     show if: aff_unpaid_judgments
-  - How much is garnished from each check and how often is the defendant paid?: aff_garnish_details
+  - How much is garnished from each check and how often is the person paid?: aff_garnish_details
     input type: area
     show if: aff_garnish
-  - List any assets the defendant owns that are worth more than $100: aff_assets
+  - List any assets the person owns that are worth more than $100: aff_assets
     required: false
     input type: area
     note: (e.g., cash, money in banks or other financial institutions, stocks, bonds, cars, trucks, other vehicles, land, houses, buildings, interests in a business, or anything else worth more than $100)
-  - List the balance of all outstanding debts the defendant has, identifying the amount of any liens on the defendant's property for the debt.: aff_outstanding_debts
+  - Write down the total amount of money the person still owes for any debts and if there are any liens on their property because of these debts.: aff_outstanding_debts
     required: false
     note: (e.g., mortgage debt with lien on house, bank loan with lien on vehicle, etc)
     input type: area
-  - Does the defendant expect to receive any property or money in the near future, such as inheritance, gifts, etc?: aff_future_windfall
+  - Does the person anticipate getting any money or property soon, like through inheritance, gifts, or other means?: aff_future_windfall
     datatype: yesnoradio
-  - Identify the source that defendant expects to receive property or money in the near future, and list its expected value: aff_windfall_details
+  - Please provide information about where the person expects to receive money or property in the near future, and write down how much they expect it to be worth: aff_windfall_details
     show if: aff_future_windfall
     input type: area
-  - Describe any other personal or family circumstances, including physical or mental health issues that affect the defendant's ability to repay the restitution ordered in this case: aff_personal_circumstances
+  - Tell us about any other personal or family situations that may impact the person's ability to pay the restitution they were ordered to in this case. This includes any physical or mental health problems that might affect them.: aff_personal_circumstances
     input type: area
     required: false
-  - List any additional information that it is important for the court to know in determining the defendant's ability to pay Category B restitution ordered in this case.: aff_additional_information
+  - Write down any extra details that are important for the court to consider when deciding whether the person can afford to pay the Category B restitution ordered in this case.: aff_additional_information
     input type: area
     required: false
   - note: |

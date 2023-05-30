@@ -3,7 +3,7 @@ id: atp_other_income
 question: Iowa Ability to Pay Calculator - Other Income
 progress: 40
 subquestion: | 
-  Please enter all of the defendant's income from sources other than working. Please enter gross amounts before any taxes or other deductions are subtracted. Tax and other deduction information will be collected and factored in on another page. 
+  Please input any money the defendant receives from sources other than working. This includes the total amount before any taxes or deductions are taken out. We will gather information about taxes and deductions separately on another page.
 fields: 
   - Income Source: not_jobs[i].name.text
     input type: dropdown

@@ -5,7 +5,7 @@ email address default: |
 question: |
   Iowa Ability to Pay Calculator - Documents Generated
 subquestion: |
-  All done. You may download your file below. Click "restart" if you would like to generate document(s) for another defendant. 
+  All done. You may download your file below. Click "restart" if you would like to generate document(s) for another person. 
 attachment:
   name: Ability to Pay Worksheet
   filename: Ability_To_Pay_Worksheet
@@ -24,7 +24,7 @@ email address default: |
 question: |
   Iowa Ability to Pay Calculator - Documents Generated
 subquestion: |
-  All done. You may download your file below. Click "restart" if you would like to generate document(s) for another defendant. 
+  All done. You may download your file below. Click "restart" if you would like to generate document(s) for another person. 
 attachments:
   - name: Ability to Pay Worksheet
     filename: Ability_To_Pay_Worksheet

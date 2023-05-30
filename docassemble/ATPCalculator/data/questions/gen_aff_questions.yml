@@ -12,6 +12,7 @@ fields:
     code: get_county_names()
     note: This value is already filled in based on where the client currently lives. It might be different from the county where their case was filed.
   - Case Number: aff_case_num
+    required: false
   - Plaintiff/Petitioner Name: aff_plaintiff
     default: State of Iowa
   - Defendant/Respondent: aff_def_name
@@ -140,14 +141,21 @@ fields:
   - note: |
       <hr>Preparing Attorney's Information<hr>
   - Name of attorney or organization: aff_atty_name
+    required: false
   - Business Street address of attorney or organization: aff_atty_street
+    required: false
   - City: aff_atty_city
+    required: false
   - State: aff_atty_state
+    required: false
   - Zip: aff_atty_zip
+    required: false
   - Attorney Phone: aff_atty_phone
+    required: false
   - Attorney Fax Number: aff_atty_fax
     required: false
   - Attorney email address: aff_atty_email
+    required: false
   - note: |
       <hr>Defendant Oath and Signature<hr>
   - Defendant Mailing Address: aff_def_street

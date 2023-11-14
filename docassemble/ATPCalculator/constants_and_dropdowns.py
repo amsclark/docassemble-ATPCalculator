@@ -3,27 +3,29 @@ min_payment = 1
 max_percent_payment = .10
 max_num_monthly_payments = 36
 
-#2022 Figures
+#2023 Figures
 # in household	Amount
-#1	$13,590 
-#2	$18,310 
-#3	$23,030 
-#4	$27,750 
-#5	$32,470 
-#6	$37,190 
-#7	$41,910 
-#8	$46,630 
-# Add'l	 $4,720 
+#1	$14,580 
+#2	$19,720 
+#3	$24,860 
+#4	$30,000 
+#5	$35,140 
+#6	$40,280 
+#7	$45,420 
+#8	$50,560 
+# Add'l	 $5,140 
 # Currently, the federal government publishes these as a table up to household size of 8, but if you work out the math it is always just a base number plus an increment amount multiplied by household size
-poverty_base = 8870
-poverty_increment = 4720
+poverty_base = 9440
+poverty_increment = 5140
 
-food = {"1": 400, "2": 724, "3": 838, "4": 955, "additional": 187.16}
-housekeeping = {"1": 41, "2": 76, "3": 69, "4": 79, "additional": 15.48}
-apparel_and_services = {"1": 92, "2": 150, "3": 191, "4": 259, "additional": 50.76}
-personal_care = {"1": 42, "2": 76, "3": 72, "4": 89, "additional": 17.44}
-miscellaneous = {"1": 148, "2": 266, "3": 303, "4": 358, "additional": 70.16}
+#IRS numbers circa April 24, 2023
+food = {"1": 466, "2": 777, "3": 936, "4": 1123, "additional": 195.39}
+housekeeping = {"1": 47, "2": 80, "3": 85, "4": 90, "additional": 16.16}
+apparel_and_services = {"1": 96, "2": 145, "3": 207, "4": 252, "additional": 52.99}
+personal_care = {"1": 43, "2": 78, "3": 91, "4": 97, "additional": 18.21}
+miscellaneous = {"1": 189, "2": 309, "3": 381, "4": 431, "additional": 73.25}
 # The IRS really does think that housekeeping and personal care costs go down when a third person is added to a household, and then costs go back up again when the fourth is added.
+# November 2023 update: apparently not anymore?
 
 def get_food_personal_care(care_dict, household_size):
   if household_size <= 4:
@@ -31,9 +33,9 @@ def get_food_personal_care(care_dict, household_size):
   else:
     return care_dict["4"] + (care_dict["additional"] * (household_size - 4))
 
-car_ownership = {"0": 0, "1": 533, "2": 1066}
-car_operating = {"0": 0, "1": 201, "2": 402}
-public_transport_allowance = 217
+car_ownership = {"0": 0, "1": 629, "2": 1258}
+car_operating = {"0": 0, "1": 225, "2": 450}
+public_transport_allowance = 218
 
 #household_size_options = {
 #"one": "1",
@@ -45,7 +47,7 @@ public_transport_allowance = 217
 
 number_cars_options = {"0":"0", "1":"1", "2":"2+"}
 
-oop_65_or_older_allowance = {"under": 68, "sixty_five_or_older": 142}
+oop_65_or_older_allowance = {"under": 79, "sixty_five_or_older": 154}
 def get_oop_allowance(sixty_five_or_older):
   if sixty_five_or_older:
     return oop_65_or_older_allowance['sixty_five_or_older']

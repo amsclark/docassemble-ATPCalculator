@@ -3,7 +3,7 @@ progress: 100
 email address default: | 
   ${ attorney_email }
 question: |
-  Iowa Ability to Pay Calculator - Documents Generated
+  Ability to Pay Calculator - Documents Generated
 subquestion: |
   All done. You may download your file below. Click "restart" if you would like to generate document(s) for another defendant. 
 attachment:
@@ -22,7 +22,7 @@ progress: 100
 email address default: | 
   ${ attorney_email }
 question: |
-  Iowa Ability to Pay Calculator - Documents Generated
+  Ability to Pay Calculator - Documents Generated
 subquestion: |
   All done. You may download your file below. Click "restart" if you would like to generate document(s) for another defendant. 
 attachments:

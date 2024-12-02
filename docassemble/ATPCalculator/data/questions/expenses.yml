@@ -1,5 +1,5 @@
 id: atp_expenses
-question: Iowa Ability to Pay Calculator - Expenses
+question: Ability to Pay Calculator - Expenses
 progress: 70
 subquestion: | 
   The form below has populated with a basic allowance based on the information you have already provided. <strong>You only need to change a number in the form below if you pay <span style="text-decoration: underline;">more</span> per month than the number already in the blank</strong>.

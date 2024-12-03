@@ -3,7 +3,7 @@ id: atp_earned_income
 question: Ability to Pay Calculator - Earned Income
 progress: 30
 subquestion: | 
-  Please enter all of the defendant's income from working, including tips. Please enter gross amounts before any taxes or other payroll deductions are subtracted. Expense information will be collected and factored in on another page. 
+  Please type in how much money the person makes from their job, including any tips they receive. This should be the total amount before any taxes or other deductions are taken out. We will ask about expenses on a different page. 
 fields: 
   - Employer Name: jobs[i].name.text
   - Gross Monthly Income: jobs[i].wage

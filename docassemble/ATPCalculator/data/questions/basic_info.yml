@@ -2,7 +2,7 @@ id: atp_basic_info
 question: |
   Ability to Pay Calculator - Basic Information
 subquestion: |
-  Please fill in the fields below related to the defendant's case and financial circumstances. 
+  Please complete the boxes below related to the person's case and money situation. 
 progress: 20
 fields:
   - First Name: first_name

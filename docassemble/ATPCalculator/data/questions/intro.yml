@@ -1,19 +1,20 @@
 id: atp_intro
-question: Iowa Ability to Pay Calculator
+question: Ability to Pay Calculator
 progress: 5
 subquestion: |
-  In Iowa, some people have to pay "court debt." Court debt is money they owe because of their involvement in a criminal, civil, or juvenile case. This debt can include fines and payments to victims. It can also include fees for court services, jail, or defense lawyers. Fees for court services, jail, or defense lawyers should only be charged if the person has the ability to pay them. 
+  Under state and federal law, people can be ordered to pay "court debt." Court debt is debt people owe because of their involvement in a criminal, civil, or juvenile case. This can include fines and victim restitution, but also many different kinds of fees for the services of a court, a jail, an interpreter, appointed defense counsel for people who cannot otherwise pay, etc. Depending on the state, some or all types of court debt can only be charged to someone if they have the "ability to pay" them. 
   
-  The law requires an assessment of a person's ability to pay. But the law doesn't give clear guidance on what that means. This calculator tries to make the issue more concrete by borrowing a model called the [Collection Financial Standards](https://www.irs.gov/businesses/small-businesses-self-employed/collection-financial-standards) which has been used by the Internal Revenue Service for a long time. These standards are based on updated information from various government agencies. The information includes costs of housing, food, medicine, transportation, and other important expenses. This information helps determine the realistic costs of basic household needs without requiring a person who owes court debt, their lawyer, or the court to go through a lot of paperwork.
+  Even though the law requires a court to figure out someone's ability to pay before imposing / modifying / enforcing court debt, it doesn't provide much guidance on what "ability to pay" actually means. This calculator provides a concrete, evidenced based determination by borrowing a long-standing model from the Internal Revenue Service – the [collection financial standards](https://www.irs.gov/businesses/small-businesses-self-employed/collection-financial-standards). This standards are based on periodically updated data from a number of federal agencies. This data standardizes costs of housing, food, medicine, transportation, and other basic necessities. This data gives a picture of the realistic costs of the minimum costs of maintaining miminum household expenses without requiring a person, their lawyer, or the court to go through a mountain of documentation of actual expenses. The calculator also ensures that ability to pay amounts are not artificially frozen at a level that is less than what is required to maintain the basics.
   
-  Please email Alex Kornya at [alexkornya@justice4all.org](mailto:alexkornya@justice4all.org) or text message to (515) 400-3618 if you have any feedback about how the final version of the calculator could be better.
+  This calculator is a demo, and the final version will be tentatively be released and hosted elsewhere later in 2025. Please email Alex Kornya at [alexkornya@justice4all.org](mailto:alexkornya@justice4all.org) or text to (515) 400-3618 if you have any feedback about how the final version of the calculator could be better.
   
   # Who can use this calculator?
   
-  * People who owe court debt in criminal, civil, or juvenile cases
-  * Attorneys representing someone in a criminal, civil, or juvenile case
-  * Prosecutors who want to assess the ability to pay based on data and facts
-  * Justices, judges, or magistrates
+  * A person who is a defendant in a criminal, civil, or juvenile case
+  * An attorney representing someone in a criminal, civil, or juvenile case
+  * A prosecutor seeking a position on ability to pay based on objective, evidence based information
+  * A justice, judge, or magistrate
+
   * Members of the media
   * The general public 
   * Anyone who wants an objective estimate, based on evidence, of what someone can afford to to pay without facing financial hardship
@@ -26,6 +27,8 @@ subquestion: |
   
   * The second part, which is optional, helps create a **financial affidavit** that can be edited. This affidavit is required when asking to reduce court debt resulting from a criminal conviction. You can file this affidavit directly with court. Alternatively, if you are a lawyer, you can ask your client to fill out the affidavit and the program will email the document to you for review. <strong><span style="color: green"> This part should take an additional 5 to 10 minutes to complete.</span></strong>
   
-  This software was developed by Iowa Legal Aid in collaboration with Clark Management Consulting under an open source license. For a copy of the source code, please contact Iowa Legal Aid or Clark Management Consulting.
+
+  This software was developed by Alex Kornya in partnership with Clark Management Consulting under an open source license. For a copy of the source code, please contact Alex Kornya or Clark Management Consulting.
+
 
 continue button field: intro

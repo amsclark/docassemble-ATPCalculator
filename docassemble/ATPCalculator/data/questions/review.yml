@@ -1,5 +1,5 @@
 id: atp_review
-question: Iowa Ability to Pay Calculator - Review
+question: Ability to Pay Calculator - Review
 progress: 95
 subquestion: |
   Based on the information provided, including a fine/penalty balance of $${ round(fine_penalty_balance, 2) }, monthly income of $${ round((earned_income_total + other_income_totals), 2) } and expenses of $${ round(all_expenses, 2) }, the suggested monthly repayment is $${ round(installment_rap, 2) }. After ${ round(number_payments, 2) } months of payment of this amount, the defendant will have repaid ${ round(amount_repaid, 2) }.

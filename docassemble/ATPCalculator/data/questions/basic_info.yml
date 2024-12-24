@@ -2,7 +2,7 @@ id: atp_basic_info
 question: |
   Ability to Pay Calculator - Basic Information
 subquestion: |
-  Please complete the boxes below related to the person's case and money situation. 
+  Please complete the boxes below related to the person's case and money situation.
 progress: 20
 fields:
   - First Name: first_name
@@ -11,9 +11,16 @@ fields:
   - Last Name: last_name
   - Suffix: suffix
     required: false
+  - State: state
+    input type: dropdown
+    code: us_states_options
+    datatype: str
+    required: true
   - County: county
     input type: dropdown
-    code: get_county_names()
+    code: get_state_county_names(state)
+    show if: state is not None
+    datatype: str
   - Is Defendant 65 years of age or older?: sixty_five_or_older
     datatype: yesnoradio
   - Household Size: household_size

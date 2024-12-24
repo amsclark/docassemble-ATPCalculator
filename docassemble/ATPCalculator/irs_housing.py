@@ -1,7 +1,7 @@
 import pandas
 from docassemble.base.util import path_and_mimetype
 
-__all__ = ['get_county_names', 'county_info', 'get_total_housing_allowance', 'read_state_data']
+__all__ = ['get_county_names', 'county_info', 'get_total_housing_allowance', 'get_state_county_names', 'state_county_info', 'get_state_total_housing_allowance']
 
 county_info_by_name = {}
 county_names = []
@@ -13,7 +13,6 @@ def get_total_housing_allowance(county, household_size):
     return county_info(county)[str(household_size)]
   else:
     return county_info(county)["five_or_more"]
-
 
 def read_data(filename):
     the_xlsx_file, mimetype = path_and_mimetype(filename)
@@ -33,27 +32,35 @@ def county_info(county):
     return county_info_by_name[county]
 
 def read_state_data(state_name):
-    """
-    Reads a .tsv file named after the given state and returns its contents as a DataFrame
-    """
     filename = f"data/sources/{state_name}.tsv"
     the_tsv_file, mimetype = path_and_mimetype(filename)
     df = pandas.read_csv(the_tsv_file, sep='\t')
-    
-    # Process the DataFrame to match the structure of `read_data`
     state_county_info = {}
     state_county_names = []
-    
     for indexno in df.index:
         if not df['County'][indexno]:
             continue
         state_county_names.append(df['County'][indexno])
-        state_county_info[df['County'][indexno]] = {
-            "1": df['2024 Published ALE Housing Expense for a Family of 1'][indexno],
-            "2": df['2024 Published ALE Housing Expense for a Family of 2'][indexno],
-            "3": df['2024 Published ALE Housing Expense for a Family of 3'][indexno],
-            "4": df['2024 Published ALE Housing Expense for a Family of 4'][indexno],
-            "five_or_more": df['2024 Published ALE Housing Expense for a Family of 5'][indexno]
-        }
+        state_county_info[df['County'][indexno]] = {"1": df['One'][indexno], "2": df['Two'][indexno], "3": df['Three'][indexno], "4": df['Four'][indexno], "five_or_more": df['Five_Or_More'][indexno]}
+    return state_county_info, state_county_names
 
-    return state_county_names, state_county_info
+def get_state_county_names(state_name):
+    _, state_county_names = read_state_data(state_name)
+    return state_county_names
+
+def state_county_info(state_name, county):
+    state_county_info, _ = read_state_data(state_name)
+    if county not in state_county_info:
+        raise Exception(f"Reference to invalid county {county} in state {state_name}")
+    return state_county_info[county]
+
+def get_state_total_housing_allowance(state_name, county, household_size):
+    state_county_info, _ = read_state_data(state_name)
+    if county not in state_county_info:
+        raise Exception(f"Reference to invalid county {county} in state {state_name}")
+    if household_size <= 4:
+        return state_county_info[county][str(household_size)]
+    else:
+        return state_county_info[county]["five_or_more"]
+
+read_data('data/sources/irs_housing_data.xlsx')

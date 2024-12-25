@@ -50,9 +50,9 @@ fields:
   - note: |
       <hr>Transportation <hr>
   - Operating: monthly_operating
-    default: ${ round(car_operating[number_of_cars], 2) }
-    hint: ${ round(car_operating[number_of_cars], 2) }
-    min: ${ round(car_operating[number_of_cars], 2) }
+    default: ${ round(monthly_transport_standard, 2) }
+    hint: ${ round(monthly_transport_standard, 2) }
+    min: ${ round(monthly_transport_standard, 2) }
     datatype: currency
     note: We determine the typical costs of owning and using a vehicle based on guideslins from the IRS. These guidelines are called the <a href="https://www.irs.gov/businesses/small-businesses-self-employed/local-standards-transportation">IRS Local Standard for Transportation.</a>. They help us understand how much it usually costs to have one or two vehicles. 
   - Ownership: monthly_ownership

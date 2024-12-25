@@ -122,5 +122,3 @@ states_dict = {
     "district-of-columbia": "District of Columbia",
     "puerto-rico": "Puerto Rico"
 }
-
-

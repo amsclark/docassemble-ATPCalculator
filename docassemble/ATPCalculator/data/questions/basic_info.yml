@@ -13,14 +13,14 @@ fields:
     required: false
   - State: state
     input type: dropdown
-    code: us_states_options
+    code: states_dict
     datatype: str
     required: true
   - County: county
-    input type: dropdown
-    code: get_state_county_names(state)
-    show if: state is not None
-    datatype: str
+    choices: 
+     -  N/A
+    #js enable if: val('state')
+    required: true
   - Is Defendant 65 years of age or older?: sixty_five_or_older
     datatype: yesnoradio
   - Household Size: household_size
@@ -36,4 +36,20 @@ fields:
     datatype: yesnoradio
   - Other Income: has_oi
     datatype: yesnoradio
+check in: update_counties
 continue button field: basic_info
+---
+event: update_counties
+code: |
+  if action_argument('_changed') == 'state':
+    background_response(
+      {
+        'county':
+          {
+            'choices': \
+              get_state_county_names(action_argument('state')) \
+              or \
+              ['N/A']
+          }
+      }, 'fields')
+  background_response()

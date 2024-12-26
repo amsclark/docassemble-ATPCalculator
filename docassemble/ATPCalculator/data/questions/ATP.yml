@@ -88,11 +88,15 @@ code: |
   nav.set_section('Expenses')
   FICA = earned_income_total * FICA_rate
   #transportation_standards = get_transportation_standards()
-  transport_filename = "transportationstandards.csv"
-  transport_standards = pd.read_csv(transport_filename)
-  if number_of_cars == 1:
+  transport_filename = f"data/sources/transportationstandards.csv"
+  the_csv_file, csv_file_mimetype = path_and_mimetype(transport_filename)
+  with open(the_csv_file, "r") as f:
+    transportation_standards = pd.read_csv(f)
+  tots = type(transportation_standards)
+  log(tots)
+  if number_of_cars == "1":
     monthly_transport_standard = transportation_standards.loc[(transportation_standards['State'] == state) & (transportation_standards['County'] == county), '1'].iloc[0]
-  elif number_of_cars == 2:
+  elif number_of_cars == "2":
     monthly_transport_standard = transportation_standards.loc[(transportation_standards['State'] == state) & (transportation_standards['County'] == county), '2'].iloc[0]
   else: 
     monthly_transport_standard = 0

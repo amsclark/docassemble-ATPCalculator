@@ -11,7 +11,7 @@ fields:
       - SSI/SSD/SS Retirement: inc_SS
       - Unemployment: inc_unemp
       - VA Benefits: inc_VA
-      - TANF/FIP: inc_tanf
+      - ${"FIP" if state == "iowa" else "TANF"}: inc_tanf
       - Pension: inc_pens
       - SNAP: inc_snap
       - Alimony: inc_alim

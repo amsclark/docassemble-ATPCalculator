@@ -58,7 +58,6 @@ code: |
   intro
   nav.set_section('Basic Information')
   basic_info
-  #log(variables_as_json())
   total_housing_allowance = get_total_housing_allowance(county, household_size)
   earned_income_total = 0
   other_income_totals = 0
@@ -157,9 +156,7 @@ code: |
                                   monthly_court_debt_payments + \
                                   monthly_other
   
-  #if installment_rap < min_payment:
-  #  installment_rap = min_payment
-  #overall_rap = installment_rap * max_num_monthly_payments
+
   if fine_penalty_balance <= (min_payment * max_num_monthly_payments):
 	  installment_rap = min_payment
 	  number_payments = fine_penalty_balance / installment_rap

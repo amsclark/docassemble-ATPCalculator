@@ -1,6 +1,6 @@
 id: atp_gen_aff_questions
 question: |
-  Financial Affidavit for Reasonable Ability to Pay Determination for Category B Restitution
+  Financial Affidavit for Reasonable Ability to Pay Determination for ${"Category B Restitution" if state == "iowa" else "Restitution"}
 #continue button field: gen_aff_questions
 subquestion: |
   Please answer the questions below based on the person's situation. In some cases, the answers may already be filled in from earlier in this tool. Make sure to review all the filled-in information with the person to make sure it's accurate and matches the specific wording of the questions in this section. 
@@ -8,19 +8,17 @@ progress: 80
 fields: 
   - County: aff_county
     default: ${ county }
-    input type: dropdown
-    code: get_county_names()
     note: This value is already filled in based on where the client currently lives. It might be different from the county where their case was filed.
   - Case Number: aff_case_num
     required: false
   - Plaintiff/Petitioner Name: aff_plaintiff
-    default: State of Iowa
+    default: ${ "State of " + states_dict[state] }
   - Defendant/Respondent: aff_def_name
     default: ${ first_name }${ " " + middle_name if len(middle_name) > 0 else "" } ${ last_name } ${ suffix }
   - Defendant Date of Birth: aff_dob
     datatype: date
   - note: |
-      Has the person been convicted of any previous crimes in Iowa or anywhere else that resulted in them owing fines, penalties, victim restitution, or other money that hasn't been fully paid yet?
+      Has the person been convicted of any previous crimes in ${states_dict[state]} or anywhere else that resulted in them owing fines, penalties, victim restitution, or other money that hasn't been fully paid yet?
   - Other Convictions: aff_priors
     datatype: yesnoradio
   - note: What is the total amount that is unpaid? If you have a payment plan set up with the court, what are your monthly payments?
@@ -135,7 +133,7 @@ fields:
   - Tell us about any other personal or family situations that may impact the person's ability to pay the restitution they were ordered to in this case. This includes any physical or mental health problems that might affect them.: aff_personal_circumstances
     input type: area
     required: false
-  - Write down any extra details that are important for the court to consider when deciding whether the person can afford to pay the Category B restitution ordered in this case.: aff_additional_information
+  - Write down any extra details that are important for the court to consider when deciding whether the person can afford to pay the ${ "Category B restitution" if state == "iowa" else "restitution"} ordered in this case.: aff_additional_information
     input type: area
     required: false
   - note: |

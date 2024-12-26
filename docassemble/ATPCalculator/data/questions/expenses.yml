@@ -166,8 +166,14 @@ fields:
     min: 0
     datatype: currency
   - note: |
-      <hr>Iowa Code 910.1(1A) Affidavit <hr>
+      <hr>${"Iowa Code 910.1(1A) Affidavit" if state == "iowa" else "Financial Affidacit"} <hr>
   - Generate Affidavit: gen_aff
     datatype: yesnoradio
-    note: By default this application will only generate a worksheet that calculates a reasonable estimation of your ability to pay. If you would like to also generate a supporting document called the "Financial Affidavit for Reasonable Ability to Pay Determination for Category B Restitution" under Iowa Code 910.1(1A), select "Yes" here.
+    note: | 
+      By default this application will only generate a worksheet that calculates a reasonable estimation of your ability to pay. 
+      % if state == 'iowa': 
+      If you would like to also generate a supporting document called the "Financial Affidavit for Reasonable Ability to Pay Determination for Category B Restitution" under Iowa Code 910.1(1A), select 'Yes' here. 
+      % else: 
+      Some states may have specific filings, like an affidavit, form, or other document specific to state and local rules that must be filed with a court. To see an example of what this might look like and include, based on Iowa's state laws and rules, select 'Yes' here
+      % endif
 continue button field: expenses

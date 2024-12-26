@@ -63,7 +63,7 @@ $(document).on("daPageLoad", function () {
     yearElement.append(opt);
     for (
       var year = today.getFullYear();
-      year > today.getFullYear() - 50;
+      year > today.getFullYear() - 120;
       year--
     ) {
       opt = $("<option>");

@@ -124,7 +124,8 @@ def  get_monthly_expenses_text(monthly_food, monthly_housekeeping, monthly_appar
 
 
 
-def get_other_income_list(not_jobs, oi_labels):
+def get_other_income_list(not_jobs, state, oi_labels, tanf_alt_names):
+  oi_labels["inc_tanf"] = tanf_alt_names.get(state, "TANF")
   if len(not_jobs) == 1:
     return "$" + str(not_jobs[0].amount) + " monthly from " + oi_labels[not_jobs[0].name.text]
   if len(not_jobs) == 2:

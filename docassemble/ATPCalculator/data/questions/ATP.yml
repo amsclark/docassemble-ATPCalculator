@@ -9,7 +9,8 @@ metadata:
   authors:
     - name: Alexander Clark
       organization: Clark Management Consulting
-  revision_date: 2024-12-02
+  revision_date: 2024-12-26
+
 
 ---
 modules:
@@ -21,6 +22,7 @@ modules:
 objects:
   - jobs: DAList.using(object_type=Thing, there_are_any=True)
   - not_jobs: DAList.using(object_type=Thing, there_are_any=True)
+  - ATP_Logo: DAStaticFile.using(filename='Designer.jpg')
 ---
 features:
   navigation: True
@@ -54,6 +56,7 @@ code: |
   import re
   import pandas as pd
 
+  #set_parts(title='National Ability to Pay Calculator', logo='<img src="' + ATP_Logo.url_for() + '" style="width: 157px;">')
   nav.set_section('Welcome')
   intro
   nav.set_section('Basic Information')

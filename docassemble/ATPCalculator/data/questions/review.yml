@@ -12,7 +12,7 @@ review:
       You said the defendant earned $${round(earned_income_total,2)} per month (gross) working at ${ get_employer_list(jobs) }.
   - Revisit other income information: not_jobs[0].name.text
     button: |
-      You said the defendant had the following monthly income from sources other than work: <ul><li>${ '</li><li>'.join(re.split(',|and', get_other_income_list(not_jobs, oi_labels))) }</li></ul>
+      You said the defendant had the following monthly income from sources other than work: <ul><li>${ '</li><li>'.join(re.split(',|and', get_other_income_list(not_jobs, state, oi_labels, tanf_alt_names))) }</li></ul>
   - Revisit expenses: expenses
     button: |
       You said the defendant had the following expenses: <ul><li>${ '</li><li>'.join( re.split(',', get_monthly_expenses_text(monthly_food, monthly_housekeeping, monthly_apparel_and_service, monthly_personal_care, monthly_misc, monthly_operating, monthly_ownership, monthly_public_transit, monthly_housing, monthly_basic_utils, monthly_telecom_utils, monthly_real_estate_taxes_insurance, monthly_maint_repairs, monthly_housing_utils_total, monthly_health_insurance, monthly_oop_healthcare, monthly_medical_expenses, monthly_child_dependent_care, monthly_fica, monthly_est_tax_payments, monthly_term_life_insurance, monthly_retirement_required, monthly_retirement_voluntary, monthly_union_dues, monthly_other))) }</li></ul>

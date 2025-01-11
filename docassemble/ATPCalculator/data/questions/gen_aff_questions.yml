@@ -88,7 +88,7 @@ fields:
     input type: area
     default: 
       code: |
-        get_other_income_list(not_jobs, oi_labels) if defined('not_jobs[0].name.text') else ""
+        get_other_income_list(not_jobs, state, oi_labels,tanf_alt_names) if defined('not_jobs[0].name.text') else ""
     note: (e.g., social security, SSI, unemployment, etc)
   - List amounts the person owes monthly: aff_monthly_debts
     required: false

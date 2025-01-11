@@ -16,6 +16,7 @@ fields:
       - SNAP: inc_snap
       - Alimony: inc_alim
       - Investment / int. / rent: inc_invest
+      - Other Income: inc_other_other
   - Gross Monthly Income: not_jobs[i].amount
     datatype: currency
 list collect: True

@@ -148,6 +148,7 @@ def oi_consolidate(not_jobs):
                "inc_snap": 0, 
                "inc_alim": 0, 
                "inc_invest": 0, 
+               "inc_other_other": 0,
                "inc_oi_total": 0
               }
   for not_job in not_jobs:
@@ -175,4 +176,7 @@ def oi_consolidate(not_jobs):
       
     if not_job.name.text == 'inc_invest':
       oi_totals['inc_invest'] = oi_totals['inc_invest'] + not_job.amount
+
+    if not_job.name.text == 'inc_other_other':
+      oi_totals['inc_other_other'] = oi_totals['inc_other_other'] + not_job.amount
   return oi_totals

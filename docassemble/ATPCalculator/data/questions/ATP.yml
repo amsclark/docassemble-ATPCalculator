@@ -86,6 +86,7 @@ code: |
                             "inc_snap": 0, 
                             "inc_alim": 0, 
                             "inc_invest": 0, 
+                            "inc_other_other": 0,
                             "inc_oi_total": 0 }
   nav.set_section('Expenses')
   FICA = earned_income_total * FICA_rate

@@ -65,6 +65,7 @@ oi_labels = {
 "inc_snap": "SNAP", 
 "inc_alim": "Alimony", 
 "inc_invest": "Investment / Int. / Rent", 
+"inc_other_other": "Other Income",
 "inc_oi_total": 0
 }
 

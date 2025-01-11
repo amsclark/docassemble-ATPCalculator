@@ -1,5 +1,5 @@
 min_penalty = 50
-min_payment = 1
+min_payment = 10
 max_percent_payment = .10
 max_num_monthly_payments = 36
 

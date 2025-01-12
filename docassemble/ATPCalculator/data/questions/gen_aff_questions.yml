@@ -5,10 +5,12 @@ question: |
 subquestion: |
   Please answer the questions below based on the person's situation. In some cases, the answers may already be filled in from earlier in this tool. Make sure to review all the filled-in information with the person to make sure it's accurate and matches the specific wording of the questions in this section. 
 progress: 80
-fields: 
+fields:
+  - State: aff_state
+    default: ${ states_dict[state] }
+    note: State and county are already filled in based on where the client currently lives. It might be different from the state and county where their case was filed.
   - County: aff_county
     default: ${ county }
-    note: This value is already filled in based on where the client currently lives. It might be different from the county where their case was filed.
   - Case Number: aff_case_num
     required: false
   - Plaintiff/Petitioner Name: aff_plaintiff

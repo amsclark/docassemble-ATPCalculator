@@ -175,6 +175,10 @@ fields:
     datatype: currency
   - note: | 
       <button id="reset_other" type="button" class="btn btn-info">Reset</button>
+    script: |
+      <script>
+        console.log("resetting other")
+      </script>
   - note: |
       <hr>${"Iowa Code 910.1(1A) Affidavit" if state == "iowa" else "Financial Affidacit"} <hr>
   - Generate Affidavit: gen_aff

@@ -67,6 +67,8 @@ fields:
     default: ${ 217.00 if int(number_of_cars) < 1 else 0 }
     hint: ${ 217.00 if int(number_of_cars) < 1 else 0 }
     datatype: currency
+  - note: | 
+      <button id="reset_transport" type="button" class="btn btn-info">Reset</button>
   - note: |
       <hr>Housing & Utilities <hr>
   - Rent/Mortgage/Housing Payment: monthly_housing
@@ -95,6 +97,8 @@ fields:
     default: ${ round(total_housing_allowance, 2) }
     hint: ${ round(total_housing_allowance, 2) }
     min: ${ round(total_housing_allowance, 2) }
+  - note: | 
+      <button id="reset_housing" type="button" class="btn btn-info">Reset</button>
   - note: |
       <hr>Medical <hr>
   - Health Insurance: monthly_health_insurance
@@ -111,6 +115,8 @@ fields:
     datatype: currency
     min: 0
     default: 0
+  - note: | 
+      <button id="reset_medical" type="button" class="btn btn-info">Reset</button>
   - note: |
       <hr>Other <hr>
   - Child / dependent care: monthly_child_dependent_care
@@ -167,6 +173,8 @@ fields:
     default: 0
     min: 0
     datatype: currency
+  - note: | 
+      <button id="reset_other" type="button" class="btn btn-info">Reset</button>
   - note: |
       <hr>${"Iowa Code 910.1(1A) Affidavit" if state == "iowa" else "Financial Affidacit"} <hr>
   - Generate Affidavit: gen_aff

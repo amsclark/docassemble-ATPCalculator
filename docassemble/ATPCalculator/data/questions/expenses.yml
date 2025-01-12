@@ -49,6 +49,16 @@ fields:
     datatype: currency
   - note: | 
       <button id="reset_food" type="button" class="btn btn-info">Reset</button>
+      <script>
+        document.getElementById("reset_food").addEventListener("click", function() {
+          console.log("resetting food")
+          document.getElementById(btoa("monthly_food").replace(/=+$/, "")).value =                  document.getElementById(btoa("monthly_food").replace(/=+$/, "")).placeholder
+          document.getElementById(btoa("monthly_housekeeping").replace(/=+$/, "")).value =          document.getElementById(btoa("monthly_housekeeping").replace(/=+$/, "")).placeholder
+          document.getElementById(btoa("monthly_apparel_and_service").replace(/=+$/, "")).value =   document.getElementById(btoa("monthly_apparel_and_service").replace(/=+$/, "")).placeholder
+          document.getElementById(btoa("monthly_personal_care").replace(/=+$/, "")).value =         document.getElementById(btoa("monthly_personal_care").replace(/=+$/, "")).placeholder
+          document.getElementById(btoa("monthly_misc").replace(/=+$/, "")).value =                  document.getElementById(btoa("monthly_misc").replace(/=+$/, "")).placeholder
+        })
+      </script>
   - note: |
       <hr>Transportation <hr>
   - Operating: monthly_operating
@@ -69,6 +79,14 @@ fields:
     datatype: currency
   - note: | 
       <button id="reset_transport" type="button" class="btn btn-info">Reset</button>
+      <script>
+        document.getElementById("reset_transport").addEventListener("click", function() {
+          console.log("resetting transport")
+          document.getElementById(btoa("monthly_operating").replace(/=+$/, "")).value =       document.getElementById(btoa("monthly_operating").replace(/=+$/, "")).placeholder
+          document.getElementById(btoa("monthly_ownership").replace(/=+$/, "")).value =       document.getElementById(btoa("monthly_ownership").replace(/=+$/, "")).placeholder
+          document.getElementById(btoa("monthly_public_transit").replace(/=+$/, "")).value =  document.getElementById(btoa("monthly_public_transit").replace(/=+$/, "")).placeholder
+        })
+      </script>
   - note: |
       <hr>Housing & Utilities <hr>
   - Rent/Mortgage/Housing Payment: monthly_housing
@@ -99,6 +117,17 @@ fields:
     min: ${ round(total_housing_allowance, 2) }
   - note: | 
       <button id="reset_housing" type="button" class="btn btn-info">Reset</button>
+      <script>
+        document.getElementById("reset_housing").addEventListener("click", function() {
+          console.log("resetting housing")
+          document.getElementById(btoa("monthly_housing").replace(/=+$/, "")).value = document.getElementById(btoa("monthly_housing").replace(/=+$/, "")).placeholder
+          document.getElementById(btoa("monthly_basic_utils").replace(/=+$/, "")).value = document.getElementById(btoa("monthly_basic_utils").replace(/=+$/, "")).placeholder
+          document.getElementById(btoa("monthly_telecom_utils").replace(/=+$/, "")).value = document.getElementById(btoa("monthly_telecom_utils").replace(/=+$/, "")).placeholder
+          document.getElementById(btoa("monthly_real_estate_taxes_insurance").replace(/=+$/, "")).value = document.getElementById(btoa("monthly_real_estate_taxes_insurance").replace(/=+$/, "")).placeholder
+          document.getElementById(btoa("monthly_maint_repairs").replace(/=+$/, "")).value = document.getElementById(btoa("monthly_maint_repairs").replace(/=+$/, "")).placeholder
+          document.getElementById(btoa("monthly_housing_utils_total").replace(/=+$/, "")).value = document.getElementById(btoa("monthly_housing_utils_total").replace(/=+$/, "")).placeholder
+        })
+      </script>
   - note: |
       <hr>Medical <hr>
   - Health Insurance: monthly_health_insurance
@@ -117,6 +146,14 @@ fields:
     default: 0
   - note: | 
       <button id="reset_medical" type="button" class="btn btn-info">Reset</button>
+      <script>
+        document.getElementById("reset_medical").addEventListener("click", function() {
+          console.log("resetting medical")
+          document.getElementById(btoa("monthly_health_insurance").replace(/=+$/, "")).value = document.getElementById(btoa("monthly_health_insurance").replace(/=+$/, "")).placeholder
+          document.getElementById(btoa("monthly_oop_healthcare").replace(/=+$/, "")).value = document.getElementById(btoa("monthly_oop_healthcare").replace(/=+$/, "")).placeholder
+          document.getElementById(btoa("monthly_medical_expenses").replace(/=+$/, "")).value = document.getElementById(btoa("monthly_medical_expenses").replace(/=+$/, "")).placeholder
+        })
+      </script>
   - note: |
       <hr>Other <hr>
   - Child / dependent care: monthly_child_dependent_care
@@ -176,10 +213,25 @@ fields:
   - note: | 
       <button id="reset_other" type="button" class="btn btn-info">Reset</button>
       <script>
-        console.log("resetting other")
+        document.getElementById("reset_other").addEventListener("click", function() {
+          console.log("resetting other")
+          document.getElementById(btoa("monthly_child_dependent_care").replace(/=+$/, "")).value =  document.getElementById(btoa("monthly_child_dependent_care").replace(/=+$/, "")).placeholder
+          document.getElementById(btoa("monthly_fica").replace(/=+$/, "")).value =                  document.getElementById(btoa("monthly_fica").replace(/=+$/, "")).placeholder
+          document.getElementById(btoa("monthly_est_tax_payments").replace(/=+$/, "")).value =      document.getElementById(btoa("monthly_est_tax_payments").replace(/=+$/, "")).placeholder
+          document.getElementById(btoa("monthly_term_life_insurance").replace(/=+$/, "")).value =   document.getElementById(btoa("monthly_term_life_insurance").replace(/=+$/, "")).placeholder
+          document.getElementById(btoa("monthly_retirement_required").replace(/=+$/, "")).value =   document.getElementById(btoa("monthly_retirement_required").replace(/=+$/, "")).placeholder
+          document.getElementById(btoa("monthly_retirement_voluntary").replace(/=+$/, "")).value =  document.getElementById(btoa("monthly_retirement_voluntary").replace(/=+$/, "")).placeholder
+          document.getElementById(btoa("monthly_union_dues").replace(/=+$/, "")).value =            document.getElementById(btoa("monthly_union_dues").replace(/=+$/, "")).placeholder
+          document.getElementById(btoa("monthly_delinquent_taxes").replace(/=+$/, "")).value =      document.getElementById(btoa("monthly_delinquent_taxes").replace(/=+$/, "")).placeholder
+          document.getElementById(btoa("monthly_student_loans").replace(/=+$/, "")).value =         document.getElementById(btoa("monthly_student_loans").replace(/=+$/, "")).placeholder
+          document.getElementById(btoa("monthly_child_support").replace(/=+$/, "")).value =         document.getElementById(btoa("monthly_child_support").replace(/=+$/, "")).placeholder
+          document.getElementById(btoa("monthly_alimony").replace(/=+$/, "")).value =               document.getElementById(btoa("monthly_alimony").replace(/=+$/, "")).placeholder
+          document.getElementById(btoa("monthly_court_debt_payments").replace(/=+$/, "")).value =   document.getElementById(btoa("monthly_court_debt_payments").replace(/=+$/, "")).placeholder
+          document.getElementById(btoa("monthly_other").replace(/=+$/, "")).value =                 document.getElementById(btoa("monthly_other").replace(/=+$/, "")).placeholder
+        })
       </script>
   - note: |
-      <hr>${"Iowa Code 910.1(1A) Affidavit" if state == "iowa" else "Financial Affidacit"} <hr>
+      <hr>${"Iowa Code 910.1(1A) Affidavit" if state == "iowa" else "Financial Affidavit"} <hr>
   - Generate Affidavit: gen_aff
     datatype: yesnoradio
     note: | 

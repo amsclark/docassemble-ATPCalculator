@@ -31,7 +31,6 @@ fields:
     default: ${ round(get_food_personal_care(housekeeping, household_size), 2) } 
     hint: ${ round(get_food_personal_care(housekeeping, household_size), 2) } 
     min: ${ round(get_food_personal_care(housekeeping, household_size), 2) } 
-    
     datatype: currency
   - Apparel & Services: monthly_apparel_and_service
     default: ${ round(get_food_personal_care(apparel_and_services, household_size), 2) } 
@@ -48,6 +47,8 @@ fields:
     hint: ${ round(get_food_personal_care(miscellaneous, household_size), 2) } 
     min: ${ round(get_food_personal_care(miscellaneous, household_size), 2) } 
     datatype: currency
+  - note: | 
+      <button id="reset_food" type="button" class="btn btn-info">Reset</button>
   - note: |
       <hr>Transportation <hr>
   - Operating: monthly_operating

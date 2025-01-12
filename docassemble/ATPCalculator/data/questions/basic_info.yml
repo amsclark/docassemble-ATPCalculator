@@ -53,37 +53,25 @@ fields:
               stateElement.value = state;
               stateElement.dispatchEvent(new Event('change'));
       
-              // Use a promise or callback to ensure the county dropdown is populated before setting the value
-              populateCountyDropdown(county).then(function() {
-                const countyElement = document.getElementById(btoa("county").replace("=", ""));
-                countyElement.value = county;
+              // Use a mutation observer to validate the county dropdown is populated
+              const countyElement = document.getElementById(btoa("county").replace("=", ""));
+              const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                  // Check if "N/A" is still in the options
+                  const naOption = countyElement.querySelector('option[value="N/A"]');
+                  if (!naOption) { // If "N/A" is not found, the dropdown is populated
+                    observer.disconnect(); // Stop observing once "N/A" is removed
+                    countyElement.value = county; // Set the county value
+                  }
+                });
               });
+              // Observe changes to the county dropdown (watch for added or removed child elements like <option>)
+              observer.observe(countyElement, { childList: true, subtree: true });
             }).catch(function(error) {
               console.error('Error fetching interview variables:', error);
             });
           }
         });
-      
-        // Example of a function to populate the county dropdown (you can customize this as needed)
-        function populateCountyDropdown(county) {
-          return new Promise(function(resolve, reject) {
-            // Assuming you're populating the county dropdown here
-            const countyDropdown = document.getElementById(btoa("county").replace("=", ""));
-            if (countyDropdown) {
-              // Add county options (this is a simple example)
-              // In your real case, you should ensure the dropdown is populated with actual data first
-              const option = document.createElement('option');
-              option.value = county;
-              option.textContent = county;
-              countyDropdown.appendChild(option);
-      
-              // Resolve the promise once the county is added to the dropdown
-              resolve();
-            } else {
-              reject('County dropdown not found');
-            }
-          });
-        }
       </script>
 check in: update_counties
 continue button field: basic_info

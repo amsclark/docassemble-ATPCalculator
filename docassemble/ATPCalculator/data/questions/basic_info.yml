@@ -39,39 +39,47 @@ fields:
   - note: |
       <script>
         // Call the function when the page loads or an action is performed
-        $(document).on('daPageLoad', function() {
+        $(document).on('daPageLoad', function() { // d
           questionPage = document.getElementsByTagName("H1")[0].innerHTML;
           if (questionPage == "Ability to Pay Calculator - Basic Information") {
             // Fetch and display the county
-            get_interview_variables().then(function(response) {
+            var xhr = get_interview_variables();
+            xhr.done(function(response) {
               // Extract the state and county from the response
-              const state = response.variables.state;
-              const county = response.variables.county;
-      
+              let state, county; // Declare variables outside conditions for scope
+              if (xhr.responseJSON.variables.state.length > 1) {
+                state = xhr.responseJSON.variables.state;
+              }
+              if (xhr.responseJSON.variables.county.length > 1) {
+                county = xhr.responseJSON.variables.county;
+              }
+        
               // Update the state dropdown and trigger the 'change' event
-              const stateElement = document.getElementById(btoa("state").replace("=", ""));
-              stateElement.value = state;
-              stateElement.dispatchEvent(new Event('change'));
-      
+              if (xhr.responseJSON.variables.state.length > 1) { // c
+                const stateElement = document.getElementById(btoa("state").replace("=", ""));
+                stateElement.value = state;
+                stateElement.dispatchEvent(new Event('change'));
+              } // c
+        
               // Use a mutation observer to validate the county dropdown is populated
               const countyElement = document.getElementById(btoa("county").replace("=", ""));
               const observer = new MutationObserver(function(mutations) {
-                mutations.forEach(function(mutation) {
+                mutations.forEach(function(mutation) { // b
                   // Check if "N/A" is still in the options
                   const naOption = countyElement.querySelector('option[value="N/A"]');
-                  if (!naOption) { // If "N/A" is not found, the dropdown is populated
+                  if (!naOption) { // a
                     observer.disconnect(); // Stop observing once "N/A" is removed
                     countyElement.value = county; // Set the county value
-                  }
-                });
-              });
+                } // a  
+              }); // b  
+            }); // MutationObserver callback  
+        
               // Observe changes to the county dropdown (watch for added or removed child elements like <option>)
-              observer.observe(countyElement, { childList: true, subtree: true });
-            }).catch(function(error) {
-              console.error('Error fetching interview variables:', error);
-            });
-          }
-        });
+            observer.observe(countyElement, { childList: true, subtree: true });  
+          }); // xhr.done  
+        }  
+      }); // d  
+        
       </script>
 check in: update_counties
 continue button field: basic_info

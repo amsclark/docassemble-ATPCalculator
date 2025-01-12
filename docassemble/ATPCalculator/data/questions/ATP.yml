@@ -56,6 +56,8 @@ code: |
   import re
   import pandas as pd
 
+  prevent_going_back()
+  
   #set_parts(title='National Ability to Pay Calculator', logo='<img src="' + ATP_Logo.url_for() + '" style="width: 157px;">')
   nav.set_section('Welcome')
   intro

@@ -47,12 +47,9 @@ public_transport_allowance = 218
 
 number_cars_options = {"0":"0", "1":"1", "2":"2+"}
 
-oop_65_or_older_allowance = {"under": 79, "sixty_five_or_older": 154}
-def get_oop_allowance(sixty_five_or_older):
-  if sixty_five_or_older:
-    return oop_65_or_older_allowance['sixty_five_or_older']
-  else:
-    return oop_65_or_older_allowance['under']
+oop_65_or_older_allowance = {"under": 83, "sixty_five_or_older": 158}
+def get_oop_allowance(num_65_older, num_under_65):
+  return (num_65_older * oop_65_or_older_allowance['sixty_five_or_older']) + (num_under_65 * oop_65_or_older_allowance['under'])
   
 FICA_rate = .0765
 

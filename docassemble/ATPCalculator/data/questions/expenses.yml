@@ -142,10 +142,10 @@ fields:
     hint: 0
   - Out of pocket health care: monthly_oop_healthcare
     datatype: currency
-    min: ${ round(get_oop_allowance(sixty_five_or_older), 2) }
-    default: ${ round(get_oop_allowance(sixty_five_or_older), ) }
-    hint: ${ round(get_oop_allowance(sixty_five_or_older), ) }
-    note: The amount of money you can spend on healthcare each month depends on whether you're 65 years old or older. We use guidelines from the IRS to figure out this allowance. These guidelines are called the <a href="https://www.irs.gov/businesses/small-businesses-self-employed/national-standards-out-of-pocket-health-care">IRS Standards for Out of Pocket Health Care.</a>
+    min: ${ round(get_oop_allowance(num_65_older, num_under_65), 2) }
+    default: ${ round(get_oop_allowance(num_65_older, num_under_65), ) }
+    hint: ${ round(get_oop_allowance(num_65_older, num_under_65), ) }
+    note: The amount of money you can spend on healthcare each month depends on whether you or a household member are 65 years old or older. We use guidelines from the IRS to figure out this allowance. These guidelines are called the <a href="https://www.irs.gov/businesses/small-businesses-self-employed/national-standards-out-of-pocket-health-care">IRS Standards for Out of Pocket Health Care.</a>
   - Expenses: monthly_medical_expenses
     datatype: currency
     min: 0
@@ -249,15 +249,102 @@ fields:
           document.getElementById(btoa("monthly_other").replace(/=+$/, "")).value =                 document.getElementById(btoa("monthly_other").replace(/=+$/, "")).placeholder
         })
       </script>
-  - note: |
-      <hr>${"Iowa Code 910.1(1A) Affidavit" if state == "iowa" else "Financial Affidavit"} <hr>
-  - Generate Affidavit: gen_aff
-    datatype: yesnoradio
-    note: | 
-      By default this application will only generate a worksheet that calculates a reasonable estimation of your ability to pay. 
-      % if state == 'iowa': 
-      If you would like to also generate a supporting document called the "Financial Affidavit for Reasonable Ability to Pay Determination for Category B Restitution" under Iowa Code 910.1(1A), select 'Yes' here. 
-      % else: 
-      Some states may have specific filings, like an affidavit, form, or other document specific to state and local rules that must be filed with a court. To see an example of what this might look like and include, based on Iowa's state laws and rules, select 'Yes' here
-      % endif
+  - note: | 
+      <script>
+        // Call the function when the page loads or an action is performed
+        $(document).on('daPageLoad', function() { 
+          questionPage = document.getElementsByTagName("H1")[0].innerHTML;
+          if (questionPage == "Ability to Pay Calculator - Expenses") {
+          document.getElementById(btoa("monthly_food").replace(/=+$/, "")).value =                  
+          document.getElementById(btoa("monthly_food").replace(/=+$/, "")).placeholder
+      
+          document.getElementById(btoa("monthly_housekeeping").replace(/=+$/, "")).value =          
+          document.getElementById(btoa("monthly_housekeeping").replace(/=+$/, "")).placeholder
+      
+          document.getElementById(btoa("monthly_apparel_and_service").replace(/=+$/, "")).value =   
+          document.getElementById(btoa("monthly_apparel_and_service").replace(/=+$/, "")).placeholder
+      
+          document.getElementById(btoa("monthly_personal_care").replace(/=+$/, "")).value =         
+          document.getElementById(btoa("monthly_personal_care").replace(/=+$/, "")).placeholder
+          
+          document.getElementById(btoa("monthly_misc").replace(/=+$/, "")).value =                  
+          document.getElementById(btoa("monthly_misc").replace(/=+$/, "")).placeholder
+
+          document.getElementById(btoa("monthly_operating").replace(/=+$/, "")).value =       
+          document.getElementById(btoa("monthly_operating").replace(/=+$/, "")).placeholder
+          
+          document.getElementById(btoa("monthly_ownership").replace(/=+$/, "")).value =       
+          document.getElementById(btoa("monthly_ownership").replace(/=+$/, "")).placeholder
+          
+          document.getElementById(btoa("monthly_public_transit").replace(/=+$/, "")).value =  
+          document.getElementById(btoa("monthly_public_transit").replace(/=+$/, "")).placeholder
+
+          document.getElementById(btoa("monthly_housing").replace(/=+$/, "")).value = 
+          document.getElementById(btoa("monthly_housing").replace(/=+$/, "")).placeholder
+          
+          document.getElementById(btoa("monthly_basic_utils").replace(/=+$/, "")).value = 
+          document.getElementById(btoa("monthly_basic_utils").replace(/=+$/, "")).placeholder
+          
+          document.getElementById(btoa("monthly_telecom_utils").replace(/=+$/, "")).value = 
+          document.getElementById(btoa("monthly_telecom_utils").replace(/=+$/, "")).placeholder
+          
+          document.getElementById(btoa("monthly_real_estate_taxes_insurance").replace(/=+$/, "")).value = 
+          document.getElementById(btoa("monthly_real_estate_taxes_insurance").replace(/=+$/, "")).placeholder
+          
+          document.getElementById(btoa("monthly_maint_repairs").replace(/=+$/, "")).value = 
+          document.getElementById(btoa("monthly_maint_repairs").replace(/=+$/, "")).placeholder
+          
+          document.getElementById(btoa("monthly_housing_utils_total").replace(/=+$/, "")).value = 
+          document.getElementById(btoa("monthly_housing_utils_total").replace(/=+$/, "")).placeholder
+
+          document.getElementById(btoa("monthly_health_insurance").replace(/=+$/, "")).value = 
+          document.getElementById(btoa("monthly_health_insurance").replace(/=+$/, "")).placeholder
+          
+          document.getElementById(btoa("monthly_oop_healthcare").replace(/=+$/, "")).value = 
+          document.getElementById(btoa("monthly_oop_healthcare").replace(/=+$/, "")).placeholder
+          
+          document.getElementById(btoa("monthly_medical_expenses").replace(/=+$/, "")).value = 
+          document.getElementById(btoa("monthly_medical_expenses").replace(/=+$/, "")).placeholder
+          
+          document.getElementById(btoa("monthly_child_dependent_care").replace(/=+$/, "")).value =  
+          document.getElementById(btoa("monthly_child_dependent_care").replace(/=+$/, "")).placeholder
+          
+          document.getElementById(btoa("monthly_fica").replace(/=+$/, "")).value =                  
+          document.getElementById(btoa("monthly_fica").replace(/=+$/, "")).placeholder
+      
+          document.getElementById(btoa("monthly_est_tax_payments").replace(/=+$/, "")).value =      
+          document.getElementById(btoa("monthly_est_tax_payments").replace(/=+$/, "")).placeholder
+      
+          document.getElementById(btoa("monthly_term_life_insurance").replace(/=+$/, "")).value =   
+          document.getElementById(btoa("monthly_term_life_insurance").replace(/=+$/, "")).placeholder
+      
+          document.getElementById(btoa("monthly_retirement_required").replace(/=+$/, "")).value =   
+          document.getElementById(btoa("monthly_retirement_required").replace(/=+$/, "")).placeholder
+      
+          document.getElementById(btoa("monthly_retirement_voluntary").replace(/=+$/, "")).value =  
+          document.getElementById(btoa("monthly_retirement_voluntary").replace(/=+$/, "")).placeholder
+      
+          document.getElementById(btoa("monthly_union_dues").replace(/=+$/, "")).value =            
+          document.getElementById(btoa("monthly_union_dues").replace(/=+$/, "")).placeholder
+      
+          document.getElementById(btoa("monthly_delinquent_taxes").replace(/=+$/, "")).value =      
+          document.getElementById(btoa("monthly_delinquent_taxes").replace(/=+$/, "")).placeholder
+      
+          document.getElementById(btoa("monthly_student_loans").replace(/=+$/, "")).value =         
+          document.getElementById(btoa("monthly_student_loans").replace(/=+$/, "")).placeholder
+      
+          document.getElementById(btoa("monthly_child_support").replace(/=+$/, "")).value =         
+          document.getElementById(btoa("monthly_child_support").replace(/=+$/, "")).placeholder
+      
+          document.getElementById(btoa("monthly_alimony").replace(/=+$/, "")).value =               
+          document.getElementById(btoa("monthly_alimony").replace(/=+$/, "")).placeholder
+      
+          document.getElementById(btoa("monthly_court_debt_payments").replace(/=+$/, "")).value =   
+          document.getElementById(btoa("monthly_court_debt_payments").replace(/=+$/, "")).placeholder
+      
+          document.getElementById(btoa("monthly_other").replace(/=+$/, "")).value =                 
+          document.getElementById(btoa("monthly_other").replace(/=+$/, "")).placeholder
+        }  // endif
+      }); // onpageload function done
+      </script>
 continue button field: expenses

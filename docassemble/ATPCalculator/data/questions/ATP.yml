@@ -40,6 +40,7 @@ include:
   - review.yml
   - finish.yml
   - expenses.yml
+  - Offer_Financial_Aff.yml
   - gen_aff_questions.yml
   - gen_docs.yml
 ---
@@ -63,6 +64,7 @@ code: |
   intro
   nav.set_section('Basic Information')
   basic_info
+  household_size = num_65_older + num_under_65
   total_housing_allowance = get_total_housing_allowance(county, household_size)
   earned_income_total = 0
   other_income_totals = 0
@@ -105,6 +107,10 @@ code: |
   else: 
     monthly_transport_standard = 0
   expenses
+  if state == 'iowa':
+    offer_aff
+  else:
+    gen_aff = False
   prevent_going_back()
   all_expenses =                (monthly_food + \
                                 monthly_housekeeping + \

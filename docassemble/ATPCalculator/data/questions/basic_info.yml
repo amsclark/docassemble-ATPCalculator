@@ -4,6 +4,9 @@ question: |
 subquestion: |
   Please complete the boxes below related to the person's case and money situation.
 progress: 20
+validation code: | 
+  if (num_65_older < 1) and (num_under_65 < 1):
+        validation_error('You must have at least one household member.')
 fields:
   - First Name: first_name
   - Middle Name: middle_name
@@ -21,14 +24,23 @@ fields:
      -  N/A
     #js enable if: val('state')
     required: true
-  - Is Defendant 65 years of age or older?: sixty_five_or_older
-    datatype: yesnoradio
-  - Household Size: household_size
+  - field: hidden_county
+    input type: hidden
+    default: ""
+  #- Is Defendant 65 years of age or older?: sixty_five_or_older
+  #  datatype: yesnoradio
+  - How many people in your household are 65 years or older?: num_65_older
     datatype: integer
-    min: 1
+    min: 0
+    required: true
+  - How many people in your household are under 65?: num_under_65
+    datatype: integer
+    min: 0
+    required: true
   - Number of Cars: number_of_cars
     input type: dropdown
     code: number_cars_options
+    required: true
   - Fine/Penalty Balance: fine_penalty_balance
     datatype: currency
     min: ${ min_penalty }
@@ -42,6 +54,11 @@ fields:
         $(document).on('daPageLoad', function() { // d
           questionPage = document.getElementsByTagName("H1")[0].innerHTML;
           if (questionPage == "Ability to Pay Calculator - Basic Information") {
+          county_dropdown = document.getElementById(btoa("county").replace("=",""));
+          hidden_county_field = document.getElementById(btoa("hidden_county").replace("=",""));
+            if (document.getElementById(btoa("state").replace("=", "")) != "") {
+              document.getElementById(btoa("state").replace("=", "")).dispatchEvent(new Event('change'));
+            }
             // Fetch and display the county
             var xhr = get_interview_variables();
             xhr.done(function(response) {

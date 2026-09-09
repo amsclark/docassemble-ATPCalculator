@@ -1,0 +1,639 @@
+/* ------------------------------------------------------------------
+   Ability to Pay Calculator - visual theme
+   Layers on top of docassemble 1.9.x / Bootstrap 5.3.
+   Nothing here changes markup or behaviour: it only re-points the
+   Bootstrap CSS custom properties and adds typography and spacing.
+   ------------------------------------------------------------------ */
+
+/* --- typefaces ---------------------------------------------------- */
+/* Public Sans: the typeface of the US Web Design System. Variable
+   weight axis, so one file covers 400-700.                            */
+@font-face {
+  font-family: 'Public Sans';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/public-sans-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+    U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
+    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Public Sans';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/public-sans-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+    U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F,
+    U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+/* Source Serif 4, weight 600, optical size axis 8-60. Headings only. */
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('fonts/source-serif-4-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+    U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
+    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('fonts/source-serif-4-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+    U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F,
+    U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+
+/* --- tokens ------------------------------------------------------- */
+:root {
+  --atp-paper:        #FAFAF8;   /* page ground                       */
+  --atp-surface:      #FFFFFF;   /* the form sheet                    */
+  --atp-ink:          #17211F;   /* body text                         */
+  --atp-ink-soft:     #5A6663;   /* hints, help text, captions        */
+  --atp-rule:         #DCE0DA;   /* hairlines and input borders       */
+  --atp-rule-strong:  #B9C0B7;
+  --atp-accent:       #14564A;   /* deep ledger green                 */
+  --atp-accent-deep:  #0E3F36;
+  --atp-accent-wash:  #EDF2EE;
+  --atp-flag:         #9A3324;   /* errors only                       */
+  --atp-sheet-pad:    2.25rem;
+
+  --atp-sans: 'Public Sans', system-ui, -apple-system, 'Segoe UI',
+    Roboto, Helvetica, Arial, sans-serif;
+  --atp-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+
+  /* Re-point Bootstrap's own variables so components inherit. */
+  --bs-body-font-family: var(--atp-sans);
+  --bs-body-font-size: 1.0625rem;
+  --bs-body-line-height: 1.6;
+  --bs-body-color: var(--atp-ink);
+  --bs-body-bg: var(--atp-paper);
+  --bs-secondary-color: var(--atp-ink-soft);
+  --bs-border-color: var(--atp-rule);
+  --bs-link-color: var(--atp-accent);
+  --bs-link-hover-color: var(--atp-accent-deep);
+  --bs-border-radius: 3px;
+  --bs-border-radius-sm: 2px;
+  --bs-border-radius-lg: 4px;
+  --bs-primary: var(--atp-accent);
+  --bs-primary-rgb: 20, 86, 74;
+}
+
+/* --- page frame --------------------------------------------------- */
+body,
+#dabody {
+  background-color: var(--atp-paper);
+  color: var(--atp-ink);
+  font-family: var(--atp-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Navbar: solid accent instead of Bootstrap's near-black. bg-dark is
+   built from --bs-dark-rgb, so re-pointing it is enough.             */
+.danavbarcontainer .navbar.bg-dark {
+  --bs-dark-rgb: 20, 86, 74;
+  border-bottom: 1px solid var(--atp-accent-deep);
+  box-shadow: none;
+}
+#dapagetitle.navbar-brand {
+  font-family: var(--atp-serif);
+  font-weight: 600;
+  font-size: 1.0625rem;
+  letter-spacing: 0.005em;
+}
+.danavbarcontainer .navbar .nav-link {
+  font-weight: 500;
+}
+
+/* Progress bar: a flush band across the top of the sheet, not a pill. */
+.daprogress,
+.progress {
+  height: 6px;
+  border-radius: 0;
+  background-color: var(--atp-accent-wash);
+}
+/* docassemble adds .mt-2 to the progress bar, which is !important.   */
+#daquestion > .progress {
+  margin-top: calc(-1 * var(--atp-sheet-pad)) !important;
+  margin-left: calc(-1 * var(--atp-sheet-pad));
+  margin-right: calc(-1 * var(--atp-sheet-pad));
+  margin-bottom: 1.75rem;
+  width: auto;
+}
+/* When a progress bar is present it is the accent rule, so the sheet
+   does not need a second one.                                        */
+#daquestion:has(> .progress) {
+  border-top: 1px solid var(--atp-rule);
+}
+.progress-bar {
+  --bs-progress-bar-bg: var(--atp-accent);
+  background-color: var(--atp-accent);
+  transition: width 400ms ease;
+}
+
+/* --- section navigation ------------------------------------------- */
+/* A table of contents for the interview, not a row of app tabs.      */
+.danav.nav-pills {
+  --bs-nav-pills-link-active-bg: var(--atp-accent);
+  --bs-nav-pills-border-radius: 3px;
+}
+.danav .danavlink {
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: var(--atp-ink);
+}
+.danav-vertical {
+  margin-top: 1.75rem;
+  border-left: 1px solid var(--atp-rule);
+}
+.danav-vertical .danavlink {
+  border-radius: 0;
+  border-left: 3px solid transparent;
+  margin-left: -1px;
+  padding: 0.45rem 0.9rem;
+  text-align: left;
+}
+.danav-vertical .danavlink.active {
+  background-color: transparent;
+  border-left-color: var(--atp-accent);
+  color: var(--atp-accent);
+  font-weight: 700;
+}
+.danav-vertical .danavlink:hover:not(.danotavailableyet) {
+  background-color: var(--atp-accent-wash);
+  color: var(--atp-accent-deep);
+}
+.danav .danotavailableyet {
+  color: var(--atp-ink-soft) !important;
+}
+.danav-horiz {
+  margin-top: 1.25rem;
+  gap: 0.25rem;
+}
+.danav-horiz .danavlink.active {
+  background-color: var(--atp-accent);
+  color: #FFFFFF;
+}
+
+/* --- the sheet ---------------------------------------------------- */
+/* One surface per screen, with an accent rule along the top edge.
+   Deliberately not one card per field.                               */
+#daquestion,
+#dahelp {
+  background-color: var(--atp-surface);
+  border: 1px solid var(--atp-rule);
+  border-top: 3px solid var(--atp-accent);
+  border-radius: 3px;
+  padding: var(--atp-sheet-pad);
+  margin-top: 1.75rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 1px 2px rgba(23, 33, 31, 0.04);
+}
+@media (max-width: 767.98px) {
+  :root { --atp-sheet-pad: 1.25rem; }
+  #daquestion,
+  #dahelp {
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+  }
+}
+
+/* --- headings and prose ------------------------------------------- */
+.da-page-header h1,
+#daMainQuestion,
+#daMainQuestion.h3 {
+  font-family: var(--atp-serif);
+  font-weight: 600;
+  font-size: 1.75rem;
+  line-height: 1.25;
+  letter-spacing: -0.006em;
+  color: var(--atp-ink);
+  margin-bottom: 0.75rem;
+}
+.da-page-header {
+  margin-bottom: 1.25rem;
+}
+.da-subquestion {
+  color: var(--atp-ink);
+  max-width: 68ch;
+}
+.da-subquestion > p {
+  margin-bottom: 1rem;
+}
+/* Headings inside subquestion text (the intro screen uses these).    */
+.da-subquestion h1,
+.da-subquestion h2,
+.da-subquestion h3 {
+  font-family: var(--atp-serif);
+  font-weight: 600;
+  color: var(--atp-ink);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--atp-rule);
+}
+.da-subquestion h1 { font-size: 1.375rem; }
+.da-subquestion h2 { font-size: 1.25rem; }
+.da-subquestion h3 { font-size: 1.125rem; }
+.da-subquestion ul,
+.da-subquestion ol {
+  padding-left: 1.25rem;
+}
+.da-subquestion li {
+  margin-bottom: 0.35rem;
+}
+.da-subquestion a,
+.da-field-container a {
+  color: var(--atp-accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+/* --- section headers on long form screens ------------------------- */
+/* Used by the expenses screen to break a 30-field worksheet into
+   named parts.                                                       */
+.atp-section {
+  font-family: var(--atp-serif);
+  font-size: 1.1875rem;
+  font-weight: 600;
+  color: var(--atp-accent);
+  margin: 2.25rem 0 0.25rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--atp-accent);
+}
+.da-field-container-note:first-child .atp-section {
+  margin-top: 0.5rem;
+}
+.atp-section-note {
+  color: var(--atp-ink-soft);
+  font-size: 0.9375rem;
+  margin: 0.5rem 0 0;
+}
+
+/* --- form fields -------------------------------------------------- */
+.da-form-group,
+.da-field-container {
+  margin-bottom: 1.125rem;
+}
+.da-form-group label,
+.da-field-container > label,
+label.control-label,
+.dafieldpart > label {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--atp-ink);
+  margin-bottom: 0.3rem;
+  line-height: 1.4;
+}
+
+.form-control,
+.form-select {
+  font-family: var(--atp-sans);
+  font-size: 1rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.7rem;
+  color: var(--atp-ink);
+  background-color: var(--atp-surface);
+  border: 1px solid var(--atp-rule-strong);
+  border-radius: 3px;
+  box-shadow: none;
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+.form-control::placeholder {
+  color: var(--atp-ink-soft);
+  opacity: 0.75;
+}
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+  border-color: var(--atp-accent);
+  box-shadow: 0 0 0 3px rgba(20, 86, 74, 0.18);
+  outline: none;
+}
+.form-check-input:checked {
+  background-color: var(--atp-accent);
+  border-color: var(--atp-accent);
+}
+
+/* Money reads as money: lining, tabular figures, right aligned so
+   columns of amounts line up down the page.                          */
+.input-group > .form-control[type='number'],
+.input-group-text + .form-control {
+  font-variant-numeric: tabular-nums lining-nums;
+  text-align: right;
+}
+.input-group-text {
+  background-color: var(--atp-accent-wash);
+  border: 1px solid var(--atp-rule-strong);
+  border-right: none;
+  color: var(--atp-accent);
+  font-weight: 600;
+}
+
+/* Per-field guidance ("we use IRS guidelines...") is set apart as a
+   note rather than run in with the label.                            */
+.daundertext,
+.form-text,
+.da-field-container .form-text {
+  color: var(--atp-ink-soft);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-left: 2px solid var(--atp-rule);
+  padding-left: 0.7rem;
+  margin-top: 0.45rem;
+}
+
+/* Labels sit above their fields (features: labels above fields).      */
+label.da-top-label,
+.da-form-group > label.form-label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--atp-ink);
+  margin-bottom: 0.35rem;
+  line-height: 1.4;
+}
+/* The required marker is a quiet cue, not an alarm. Most fields here
+   are required, so a red star on nearly every row is noise. The
+   selectors match docassemble's own specificity (.da-form-group +
+   .darequired + target), or the red would win.                       */
+.da-form-group.darequired .da-top-label::after,
+.da-form-group.darequired .da-form-label::after,
+.dawide .da-form-group.darequired .da-form-label::after,
+.da-form-group.darequired .dawidecol::before,
+.da-form-group.darequired .dagridwide::before,
+.da-form-group.darequired .danolabel::before {
+  color: var(--atp-ink-soft);
+  font-weight: 400;
+  opacity: 0.85;
+}
+[data-bs-theme='dark'] .da-form-group.darequired .da-top-label::after,
+[data-bs-theme='dark'] .da-form-group.darequired .da-form-label::after,
+[data-bs-theme='dark'] .da-form-group.darequired .dawidecol::before,
+[data-bs-theme='dark'] .da-form-group.darequired .dagridwide::before,
+[data-bs-theme='dark'] .da-form-group.darequired .danolabel::before {
+  color: var(--atp-ink-soft);
+}
+
+/* A field 'note' is absolutely positioned into the right margin by
+   docassemble (.darlap). Against a bounded sheet it lands outside the
+   edge, so put it back in the flow under its field instead.          */
+@media (min-width: 992px) {
+  .da-form-group .darlap {
+    position: static;
+    margin-left: 0;
+    width: auto;
+  }
+}
+.da-form-group .darlap {
+  padding: 0;
+  margin-top: 0.4rem;
+  max-width: 60ch;
+}
+.da-form-group .darlap p {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--atp-ink-soft);
+  margin-bottom: 0;
+}
+
+/* Field width carries information: a box for a household count should
+   not be as wide as a box for a street address.                      */
+.da-field-container-datatype-integer .form-control,
+.da-field-container-datatype-number .form-control,
+.da-field-container-datatype-date .form-control,
+.da-field-container-datatype-currency .input-group,
+.da-field-container-datatype-currency .form-control {
+  max-width: 13rem;
+}
+.da-field-container-datatype-text .form-control,
+.da-field-container-datatype-email .form-control {
+  max-width: 30rem;
+}
+.da-field-container .form-select {
+  max-width: 22rem;
+}
+
+/* --- yes/no and choice buttons ------------------------------------ */
+.dalabelauty {
+  font-family: var(--atp-sans);
+  font-weight: 500;
+  border-radius: 3px;
+  padding: 0.6rem 0.9rem;
+}
+label.dalabelauty.btn-light {
+  --bs-btn-bg: var(--atp-surface);
+  --bs-btn-border-color: var(--atp-rule-strong);
+  --bs-btn-color: var(--atp-ink);
+  --bs-btn-hover-bg: var(--atp-accent-wash);
+  --bs-btn-hover-border-color: var(--atp-accent);
+  --bs-btn-hover-color: var(--atp-accent-deep);
+  background-color: var(--atp-surface) !important;
+  color: var(--atp-ink) !important;
+}
+.da-to-labelauty:focus-visible + label.dalabelauty {
+  box-shadow: 0 0 0 3px rgba(20, 86, 74, 0.35);
+}
+
+/* --- buttons ------------------------------------------------------ */
+/* Bootstrap 5.3 compiles literal colours into each button variant, so
+   the variant's own variables have to be re-pointed, not --bs-primary. */
+.btn {
+  font-family: var(--atp-sans);
+  font-weight: 600;
+  border-radius: 3px;
+  padding: 0.6rem 1.4rem;
+  transition: background-color 120ms ease, border-color 120ms ease;
+}
+.btn-primary {
+  --bs-btn-bg: var(--atp-accent);
+  --bs-btn-border-color: var(--atp-accent);
+  --bs-btn-hover-bg: var(--atp-accent-deep);
+  --bs-btn-hover-border-color: var(--atp-accent-deep);
+  --bs-btn-active-bg: var(--atp-accent-deep);
+  --bs-btn-active-border-color: var(--atp-accent-deep);
+  --bs-btn-disabled-bg: var(--atp-rule-strong);
+  --bs-btn-disabled-border-color: var(--atp-rule-strong);
+}
+/* docassemble uses btn-warning for Restart and btn-success for some
+   choice buttons. Untouched they are the loudest colours on the page. */
+.btn-warning,
+.btn-success,
+.btn-light,
+.btn-dark,
+.btn-info,
+.btn-secondary {
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: var(--atp-rule-strong);
+  --bs-btn-color: var(--atp-accent);
+  --bs-btn-hover-bg: var(--atp-accent-wash);
+  --bs-btn-hover-border-color: var(--atp-accent);
+  --bs-btn-hover-color: var(--atp-accent-deep);
+  --bs-btn-active-bg: var(--atp-accent-wash);
+  --bs-btn-active-color: var(--atp-accent-deep);
+  --bs-btn-active-border-color: var(--atp-accent);
+  font-weight: 500;
+}
+.da-button-set {
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--atp-rule);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+}
+.btn-danger {
+  --bs-btn-bg: var(--atp-flag);
+  --bs-btn-border-color: var(--atp-flag);
+  --bs-btn-hover-bg: #7E2A1E;
+  --bs-btn-hover-border-color: #7E2A1E;
+  --bs-btn-active-bg: #7E2A1E;
+  --bs-btn-active-border-color: #7E2A1E;
+}
+
+#dabackbutton,
+.daquestionbackbutton {
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: transparent;
+  --bs-btn-color: var(--atp-ink-soft);
+  --bs-btn-hover-color: var(--atp-accent);
+  --bs-btn-hover-bg: transparent;
+  font-weight: 500;
+}
+
+/* --- review screen ------------------------------------------------ */
+/* docassemble gives each review row a rounded grey block
+   (.bg-secondary-subtle). Inside a bounded sheet that reads as a card
+   inside a card, so make the rows a ruled list instead. The grey comes
+   from --bs-secondary-bg-subtle-rgb, so re-point it rather than
+   fighting the !important on .bg-secondary-subtle.                    */
+.da-review.bg-secondary-subtle {
+  --bs-secondary-bg-subtle: var(--atp-surface);
+  --bs-secondary-bg-subtle-rgb: 255, 255, 255;
+}
+.da-review {
+  --bs-gutter-x: 0;
+  border-top: 1px solid var(--atp-rule);
+  border-radius: 0;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0.9rem !important;
+  padding-bottom: 0.9rem;
+}
+.da-review + .da-review {
+  border-top-color: var(--atp-rule);
+}
+/* The revisit control is a quiet action, not a second primary button. */
+a.da-review-action-button.btn {
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: transparent;
+  --bs-btn-color: var(--atp-accent);
+  --bs-btn-hover-bg: var(--atp-accent-wash);
+  --bs-btn-hover-border-color: var(--atp-accent-wash);
+  --bs-btn-hover-color: var(--atp-accent-deep);
+  --bs-btn-active-bg: var(--atp-accent-wash);
+  --bs-btn-active-border-color: var(--atp-accent-wash);
+  --bs-btn-active-color: var(--atp-accent-deep);
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+  margin-left: 0.75rem !important;
+}
+.da-review ul {
+  margin-bottom: 0;
+  padding-left: 1.1rem;
+}
+.da-review p:last-child {
+  margin-bottom: 0;
+}
+
+/* --- validation --------------------------------------------------- */
+.is-invalid,
+.form-control.is-invalid,
+.form-select.is-invalid {
+  border-color: var(--atp-flag);
+  background-image: none;
+}
+.invalid-feedback,
+.da-has-error,
+.da-inline-error-wrapper {
+  color: var(--atp-flag);
+  font-weight: 500;
+}
+.alert-danger {
+  --bs-alert-color: var(--atp-flag);
+  --bs-alert-border-color: var(--atp-flag);
+  --bs-alert-bg: #FBF0EE;
+}
+
+/* --- tables (IRS standards, affidavit summaries) ------------------- */
+.table {
+  --bs-table-border-color: var(--atp-rule);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.table > thead {
+  border-bottom: 2px solid var(--atp-accent);
+}
+.table > thead th {
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+/* --- accessibility floor ------------------------------------------ */
+:focus-visible {
+  outline: 3px solid var(--atp-accent);
+  outline-offset: 2px;
+}
+.da-no-outline:focus-visible {
+  outline: 3px solid #FFFFFF;
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --- dark mode ---------------------------------------------------- */
+/* docassemble sets data-bs-theme on <html> when dark mode is enabled. */
+[data-bs-theme='dark'] {
+  --atp-paper:       #121614;
+  --atp-surface:     #1A211E;
+  --atp-ink:         #E6EAE7;
+  --atp-ink-soft:    #9DA8A3;
+  --atp-rule:        #2C3733;
+  --atp-rule-strong: #3E4B46;
+  --atp-accent:      #6FBFA8;
+  --atp-accent-deep: #8FD3BF;
+  --atp-accent-wash: #1E2A26;
+  --atp-flag:        #E08A78;
+  --bs-body-color: var(--atp-ink);
+  --bs-body-bg: var(--atp-paper);
+  --bs-border-color: var(--atp-rule);
+  --bs-link-color: var(--atp-accent);
+  --bs-link-hover-color: var(--atp-accent-deep);
+  --bs-primary: var(--atp-accent);
+  --bs-primary-rgb: 111, 191, 168;
+}
+[data-bs-theme='dark'] .btn-primary {
+  --bs-btn-color: #0C1512;
+  --bs-btn-hover-color: #0C1512;
+  --bs-btn-active-color: #0C1512;
+}
+[data-bs-theme='dark'] .danavbarcontainer .navbar.bg-dark {
+  --bs-dark-rgb: 16, 48, 41;
+  border-bottom-color: #0A2620;
+}

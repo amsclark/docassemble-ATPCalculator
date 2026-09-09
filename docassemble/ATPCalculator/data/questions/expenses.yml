@@ -20,7 +20,7 @@ script: |
   </script>
 fields:
   - note: |
-      <hr>Food/Personal Care <hr>
+      <h2 class="atp-section">Food/Personal Care</h2>
   - Food: monthly_food
     default: ${ round(get_food_personal_care(food, household_size), 2) }
     hint: ${ round(get_food_personal_care(food, household_size), 2) }
@@ -60,7 +60,7 @@ fields:
         })
       </script>
   - note: |
-      <hr>Transportation <hr>
+      <h2 class="atp-section">Transportation</h2>
   - Operating: monthly_operating
     default: ${ round(monthly_transport_standard, 2) }
     hint: ${ round(monthly_transport_standard, 2) }
@@ -88,7 +88,7 @@ fields:
         })
       </script>
   - note: |
-      <hr>Housing & Utilities <hr>
+      <h2 class="atp-section">Housing & Utilities</h2>
   - Rent/Mortgage/Housing Payment: monthly_housing
     min: 0
     default: 0
@@ -134,7 +134,7 @@ fields:
         })
       </script>
   - note: |
-      <hr>Medical <hr>
+      <h2 class="atp-section">Medical</h2>
   - Health Insurance: monthly_health_insurance
     datatype: currency
     min: 0
@@ -162,7 +162,7 @@ fields:
         })
       </script>
   - note: |
-      <hr>Other <hr>
+      <h2 class="atp-section">Other</h2>
   - Child / dependent care: monthly_child_dependent_care
     default: 0
     min: 0

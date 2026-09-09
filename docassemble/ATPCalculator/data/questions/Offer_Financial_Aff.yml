@@ -4,7 +4,7 @@ progress: 75
 subquestion: | 
 fields:
   - note: |
-      <hr>${"Iowa Code 910.1(1A) Affidavit" if state == "iowa" else "Financial Affidavit"} <hr>
+      <h2 class="atp-section">${"Iowa Code 910.1(1A) Affidavit" if state == "iowa" else "Financial Affidavit"}</h2>
   - note: | 
       By default this application will only generate a worksheet that calculates a reasonable estimation of your ability to pay. 
       % if state == 'iowa': 

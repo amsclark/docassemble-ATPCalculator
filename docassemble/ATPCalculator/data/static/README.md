@@ -21,6 +21,12 @@ dark mode without a second file.
 
 docassemble serves these with `?v=<package version>` and
 `Cache-Control: max-age=31536000`. The version is the only cache key, so
-a returning visitor keeps the old file for a year unless `version=` in
-`setup.py` changes. Installing the package does not require a bump;
-changing a static file does.
+a returning visitor keeps the old file for a year unless the version
+changes. Installing the package does not require a bump; changing a
+static file does.
+
+The version in the URL comes from `__version__` in
+`docassemble/ATPCalculator/__init__.py`, not from `setup.py` — see
+`get_version_parameter` in `docassemble/webapp/file_access.py`, which reads
+it with `importlib.import_module(package).__version__`. Bump both files so
+they stay in step.

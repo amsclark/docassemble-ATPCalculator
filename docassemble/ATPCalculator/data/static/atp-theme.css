@@ -64,6 +64,8 @@
   --atp-accent-deep:  #0E3F36;
   --atp-accent-wash:  #EDF2EE;
   --atp-flag:         #9A3324;   /* errors only                       */
+  --atp-note-bg:      #FBF6E9;   /* notices: warm paper, not a warning */
+  --atp-note-rule:    #B08A3E;
   --atp-sheet-pad:    2.25rem;
 
   --atp-sans: 'Public Sans', system-ui, -apple-system, 'Segoe UI',
@@ -96,12 +98,29 @@ body,
   -webkit-font-smoothing: antialiased;
 }
 
-/* Navbar: solid accent instead of Bootstrap's near-black. bg-dark is
-   built from --bs-dark-rgb, so re-pointing it is enough.             */
+/* Navbar. With `inverse navbar: False` docassemble renders
+   .bg-body-tertiary, so that is the case this interview actually
+   hits; the .bg-dark rule covers the inverse setting.                */
+.danavbarcontainer .navbar.bg-body-tertiary {
+  --bs-tertiary-bg: var(--atp-surface);
+  background-color: var(--atp-surface) !important;
+  border-bottom: 1px solid var(--atp-rule);
+  box-shadow: none;
+}
 .danavbarcontainer .navbar.bg-dark {
   --bs-dark-rgb: 20, 86, 74;
   border-bottom: 1px solid var(--atp-accent-deep);
   box-shadow: none;
+}
+/* Brand mark. docassemble wraps the whole `logo` string in its own
+   responsive spans, so the mark is not a direct child of #dapagetitle
+   and a flex gap there would not reach it. Space it itself.           */
+.atp-brand-mark {
+  height: 1.4rem;
+  width: auto;
+  margin-right: 0.5rem;
+  vertical-align: -0.26em;
+  color: var(--atp-accent);
 }
 #dapagetitle.navbar-brand {
   font-family: var(--atp-serif);
@@ -278,6 +297,126 @@ body,
   font-size: 0.9375rem;
   margin: 0.5rem 0 0;
 }
+
+/* --- landing page ------------------------------------------------- */
+/* The sheet is already about 66 characters wide, so the blocks below
+   set no measure of their own. That keeps every horizontal rule on
+   this screen the same length.                                       */
+/* The first screen has to do three jobs before anyone invests five
+   minutes: say what the tool does, say where its numbers come from,
+   and say that this is a demo. Everything here serves one of those.  */
+
+/* Standfirst. One sentence, set as a document lede, not a headline.  */
+.atp-lede {
+  font-family: var(--atp-serif);
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: var(--atp-ink);
+  max-width: 54ch;
+  margin: 0 0 1.5rem;
+}
+
+/* Notice block. Warm paper and a rule, so it reads as a marginal note
+   in a document rather than as an error or a success message.        */
+.atp-notice {
+  background-color: var(--atp-note-bg);
+  border-left: 3px solid var(--atp-note-rule);
+  border-radius: 0 3px 3px 0;
+  padding: 0.85rem 1.1rem;
+  margin: 0 0 1.75rem;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+.atp-notice p { margin: 0; }
+.atp-notice p + p { margin-top: 0.5rem; }
+.atp-notice strong { font-weight: 600; }
+
+/* The two parts. Genuinely sequential, so they are numbered.
+   Written as ol.atp-steps so it outranks the prose `ol` indent.      */
+ol.atp-steps {
+  list-style: none;
+  counter-reset: atp-step;
+  padding: 0;
+  margin: 0 0 1.5rem;
+}
+.atp-step {
+  counter-increment: atp-step;
+  display: grid;
+  grid-template-columns: 2.25rem 1fr;
+  column-gap: 0.75rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--atp-rule);
+}
+.atp-step:last-child { border-bottom: 1px solid var(--atp-rule); }
+.atp-step::before {
+  content: counter(atp-step);
+  font-family: var(--atp-serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--atp-accent);
+  grid-row: 1 / span 2;
+}
+.atp-step-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 0.75rem;
+  margin-bottom: 0.35rem;
+}
+.atp-step-title {
+  font-weight: 600;
+  font-size: 1.0625rem;
+  color: var(--atp-ink);
+}
+.atp-step p {
+  margin: 0;
+  color: var(--atp-ink);
+}
+.atp-step p + p { margin-top: 0.5rem; }
+
+/* Time estimate. A value, so it is set as data rather than as
+   emphasised prose.                                                  */
+.atp-time {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--atp-accent-deep);
+  background-color: var(--atp-accent-wash);
+  border-radius: 2px;
+  padding: 0.15rem 0.5rem;
+  white-space: nowrap;
+}
+.atp-optional {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--atp-ink-soft);
+}
+
+/* Audience list. Short items, so two columns on a wide screen.       */
+.atp-audience {
+  margin: 0 0 0.5rem;
+  padding-left: 1.1rem;
+}
+.atp-audience li {
+  margin-bottom: 0.3rem;
+  break-inside: avoid;
+}
+@media (min-width: 768px) {
+  .atp-audience { columns: 2; column-gap: 2.5rem; }
+}
+
+/* Attribution and provenance, set as small print.                    */
+.atp-colophon {
+  border-top: 1px solid var(--atp-rule);
+  margin-top: 2.25rem;
+  padding-top: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--atp-ink-soft);
+}
+.atp-colophon p { margin: 0; }
+.atp-colophon p + p { margin-top: 0.4rem; }
+.atp-colophon a { color: var(--atp-ink-soft); }
 
 /* --- form fields -------------------------------------------------- */
 .da-form-group,
@@ -620,6 +759,8 @@ a.da-review-action-button.btn {
   --atp-accent-deep: #8FD3BF;
   --atp-accent-wash: #1E2A26;
   --atp-flag:        #E08A78;
+  --atp-note-bg:     #241F14;
+  --atp-note-rule:   #A98A46;
   --bs-body-color: var(--atp-ink);
   --bs-body-bg: var(--atp-paper);
   --bs-border-color: var(--atp-rule);

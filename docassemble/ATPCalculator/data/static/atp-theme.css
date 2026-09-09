@@ -64,8 +64,6 @@
   --atp-accent-deep:  #0E3F36;
   --atp-accent-wash:  #EDF2EE;
   --atp-flag:         #9A3324;   /* errors only                       */
-  --atp-note-bg:      #FBF6E9;   /* notices: warm paper, not a warning */
-  --atp-note-rule:    #B08A3E;
   --atp-sheet-pad:    2.25rem;
 
   --atp-sans: 'Public Sans', system-ui, -apple-system, 'Segoe UI',
@@ -315,21 +313,6 @@ body,
   max-width: 54ch;
   margin: 0 0 1.5rem;
 }
-
-/* Notice block. Warm paper and a rule, so it reads as a marginal note
-   in a document rather than as an error or a success message.        */
-.atp-notice {
-  background-color: var(--atp-note-bg);
-  border-left: 3px solid var(--atp-note-rule);
-  border-radius: 0 3px 3px 0;
-  padding: 0.85rem 1.1rem;
-  margin: 0 0 1.75rem;
-  font-size: 0.9375rem;
-  line-height: 1.55;
-}
-.atp-notice p { margin: 0; }
-.atp-notice p + p { margin-top: 0.5rem; }
-.atp-notice strong { font-weight: 600; }
 
 /* The two parts. Genuinely sequential, so they are numbered.
    Written as ol.atp-steps so it outranks the prose `ol` indent.      */
@@ -759,8 +742,6 @@ a.da-review-action-button.btn {
   --atp-accent-deep: #8FD3BF;
   --atp-accent-wash: #1E2A26;
   --atp-flag:        #E08A78;
-  --atp-note-bg:     #241F14;
-  --atp-note-rule:   #A98A46;
   --bs-body-color: var(--atp-ink);
   --bs-body-bg: var(--atp-paper);
   --bs-border-color: var(--atp-rule);

@@ -6,13 +6,6 @@ subquestion: |
   afford to pay toward court debt, using the same financial standards the
   Internal Revenue Service applies when it collects unpaid taxes.</p>
 
-  <div class="atp-notice">
-  <p><strong>This is a demo.</strong> The final version is expected to be
-  released and hosted elsewhere later in 2025.</p>
-  <p>If you have feedback on how it could be better, email Alex Kornya at
-  <a href="mailto:alexkornya@justice4all.org">alexkornya@justice4all.org</a>.</p>
-  </div>
-
   Under state and federal law, people can be ordered to pay "court debt" — money
   owed because of their involvement in a criminal, civil, or juvenile case. It can
   include fines and victim restitution, but also many different kinds of fees: for
@@ -78,5 +71,7 @@ subquestion: |
   <p>Developed by Alex Kornya in partnership with Clark Management Consulting under
   an open source license. For a copy of the source code, please contact Alex Kornya
   or Clark Management Consulting.</p>
+  <p>To report a problem or suggest an improvement, email Alex Kornya at
+  <a href="mailto:alexkornya@justice4all.org">alexkornya@justice4all.org</a>.</p>
   </div>
 continue button field: intro

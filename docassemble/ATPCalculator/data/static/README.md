@@ -16,3 +16,11 @@ Two bars on one baseline: the amount claimed, drawn as an outline, next to
 what the person can actually pay, drawn solid and shorter. It uses
 `currentColor`, so it takes the colour of whatever it sits in and works in
 dark mode without a second file.
+
+## Bump the version when you change a file here
+
+docassemble serves these with `?v=<package version>` and
+`Cache-Control: max-age=31536000`. The version is the only cache key, so
+a returning visitor keeps the old file for a year unless `version=` in
+`setup.py` changes. Installing the package does not require a bump;
+changing a static file does.

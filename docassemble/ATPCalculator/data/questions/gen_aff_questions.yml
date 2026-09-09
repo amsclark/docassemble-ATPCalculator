@@ -139,7 +139,7 @@ fields:
     input type: area
     required: false
   - note: |
-      <hr>Preparing Attorney's Information<hr>
+      <h2 class="atp-section">Preparing Attorney's Information</h2>
   - Name of attorney or organization: aff_atty_name
     required: false
   - Business Street address of attorney or organization: aff_atty_street
@@ -157,7 +157,7 @@ fields:
   - Attorney email address: aff_atty_email
     required: false
   - note: |
-      <hr>Defendant Oath and Signature<hr>
+      <h2 class="atp-section">Defendant Oath and Signature</h2>
   - Defendant Mailing Address: aff_def_street
   - City: aff_def_city
   - State: aff_def_state

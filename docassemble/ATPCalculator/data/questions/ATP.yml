@@ -27,9 +27,10 @@ objects:
 features:
   navigation: True
   progress bar: True
-  javascript: 
+  javascript:
     - datereplace.js
-  css: atp.css
+  css: atp-theme.css
+  labels above fields: True
   inverse navbar: False
 ---
 include:
@@ -170,23 +171,23 @@ code: |
   
 
   if fine_penalty_balance <= (min_payment * max_num_monthly_payments):
-	  installment_rap = min_payment
-	  number_payments = fine_penalty_balance / installment_rap
-	  amount_repaid = fine_penalty_balance
-	  final_balance = 0
+    installment_rap = min_payment
+    number_payments = fine_penalty_balance / installment_rap
+    amount_repaid = fine_penalty_balance
+    final_balance = 0
   else:
-	  if (net_income * max_percent_payment * max_num_monthly_payments) < fine_penalty_balance:
-		  installment_rap = net_income * max_percent_payment
+    if (net_income * max_percent_payment * max_num_monthly_payments) < fine_penalty_balance:
+      installment_rap = net_income * max_percent_payment
       if installment_rap < min_payment:
         installment_rap = min_payment
-		  number_payments = max_num_monthly_payments
-		  amount_repaid = installment_rap * max_num_monthly_payments
-		  final_balance = fine_penalty_balance - amount_repaid
-	  if (net_income * max_percent_payment * max_num_monthly_payments) >= fine_penalty_balance:
-		  installment_rap = net_income * max_percent_payment
-		  amount_repaid = fine_penalty_balance
-		  number_payments = fine_penalty_balance / installment_rap
-		  final_balance = 0
+      number_payments = max_num_monthly_payments
+      amount_repaid = installment_rap * max_num_monthly_payments
+      final_balance = fine_penalty_balance - amount_repaid
+    if (net_income * max_percent_payment * max_num_monthly_payments) >= fine_penalty_balance:
+      installment_rap = net_income * max_percent_payment
+      amount_repaid = fine_penalty_balance
+      number_payments = fine_penalty_balance / installment_rap
+      final_balance = 0
   monthly_debts_text = get_monthly_debts_text(monthly_housing, monthly_basic_utils, monthly_telecom_utils, monthly_real_estate_taxes_insurance, monthly_maint_repairs, monthly_housing_utils_total, monthly_delinquent_taxes, monthly_student_loans, monthly_child_support, monthly_alimony, monthly_court_debt_payments)
   monthly_expenses_text = get_monthly_expenses_text(monthly_food, monthly_housekeeping, monthly_apparel_and_service, monthly_personal_care, monthly_misc, monthly_operating, monthly_ownership, monthly_public_transit, monthly_housing, monthly_basic_utils, monthly_telecom_utils, monthly_real_estate_taxes_insurance, monthly_maint_repairs, monthly_housing_utils_total, monthly_health_insurance, monthly_oop_healthcare, monthly_medical_expenses, monthly_child_dependent_care, monthly_fica, monthly_est_tax_payments, monthly_term_life_insurance, monthly_retirement_required, monthly_retirement_voluntary, monthly_union_dues, monthly_other)
   if gen_aff:

@@ -22,7 +22,6 @@ modules:
 objects:
   - jobs: DAList.using(object_type=Thing, there_are_any=True)
   - not_jobs: DAList.using(object_type=Thing, there_are_any=True)
-  - ATP_Logo: DAStaticFile.using(filename='Designer.jpg')
 ---
 features:
   navigation: True
@@ -60,7 +59,9 @@ code: |
 
   prevent_going_back()
   
-  #set_parts(title='National Ability to Pay Calculator', logo='<img src="' + ATP_Logo.url_for() + '" style="width: 157px;">')
+  # The mark plus the title. docassemble shows the logo in place of the
+  # title, so the responsive long/short title is reproduced here.
+  set_parts(logo='<svg class="atp-brand-mark" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="7.5" height="16" rx="1.25" stroke="currentColor" stroke-width="2"/><rect x="13.5" y="12" width="7.5" height="8" rx="1.25" fill="currentColor"/></svg><span class="d-none d-lg-inline">National Ability to Pay Calculator</span><span class="d-inline d-lg-none">ATP Calculator</span>')
   nav.set_section('Welcome')
   intro
   nav.set_section('Basic Information')

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img"
+     aria-label="Ability to Pay Calculator" fill="none">
+  <title>Ability to Pay Calculator</title>
+  <!-- The amount claimed: an outline, because it is only nominal. -->
+  <rect x="3" y="4" width="7.5" height="16" rx="1.25"
+        stroke="currentColor" stroke-width="2"/>
+  <!-- What the person can actually pay: solid, and shorter. -->
+  <rect x="13.5" y="12" width="7.5" height="8" rx="1.25"
+        fill="currentColor"/>
+</svg>

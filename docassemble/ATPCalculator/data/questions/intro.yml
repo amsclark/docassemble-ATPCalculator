@@ -2,32 +2,81 @@ id: atp_intro
 question: Ability to Pay Calculator
 progress: 5
 subquestion: |
-  Under state and federal law, people can be ordered to pay "court debt." Court debt is debt people owe because of their involvement in a criminal, civil, or juvenile case. This can include fines and victim restitution, but also many different kinds of fees for the services of a court, a jail, an interpreter, appointed defense counsel for people who cannot otherwise pay, etc. Depending on the state, some or all types of court debt can only be charged to someone if they have the "ability to pay" them. 
-  
-  Even though the law requires a court to figure out someone's ability to pay before imposing / modifying / enforcing court debt, it doesn't provide much guidance on what "ability to pay" actually means. This calculator provides a concrete, evidenced based determination by borrowing a long-standing model from the Internal Revenue Service – the [collection financial standards](https://www.irs.gov/businesses/small-businesses-self-employed/collection-financial-standards). This standards are based on periodically updated data from a number of federal agencies. This data standardizes costs of housing, food, medicine, transportation, and other basic necessities. This data gives a picture of the realistic costs of the minimum costs of maintaining miminum household expenses without requiring a person, their lawyer, or the court to go through a mountain of documentation of actual expenses. The calculator also ensures that ability to pay amounts are not artificially frozen at a level that is less than what is required to maintain the basics.
-  
-  This calculator is a demo, and the final version will be tentatively be released and hosted elsewhere later in 2025. Please email Alex Kornya at [alexkornya@justice4all.org](mailto:alexkornya@justice4all.org) if you have any feedback about how the final version of the calculator could be better.
-  
-  # Who can use this calculator?
-  
-  * A person who is a defendant in a criminal, civil, or juvenile case
-  * An attorney representing someone in a criminal, civil, or juvenile case
-  * A prosecutor seeking a position on ability to pay based on objective, evidence based information
-  * A justice, judge, or magistrate
-  * Members of the media
-  * The general public 
-  * Anyone who wants an objective estimate, based on evidence, of what someone can afford to to pay without facing financial hardship
-  
-  # How to use this calculator
-  
-  This calculator has **two parts** – one required, and one optional. 
-  
-  * The first part is an ability to pay calculator. This part uses the [collection financial standards](https://www.irs.gov/businesses/small-businesses-self-employed/collection-financial-standards) used by the Internal Revenue Service to determine if they should take action to collect taxes owed to the federal government. <strong><span style="color: green"> It should take about 3 to 5 minutes to complete.</span></strong>
-  
-  * The second part, which is optional, helps create a **financial affidavit** that can be edited. This affidavit is required when asking to reduce court debt resulting from a criminal conviction. You can file this affidavit directly with court. Alternatively, if you are a lawyer, you can ask your client to fill out the affidavit and the program will email the document to you for review. <strong><span style="color: green"> This part should take an additional 5 to 10 minutes to complete.</span></strong>
-  
+  <p class="atp-lede">This calculator estimates what a person can realistically
+  afford to pay toward court debt, using the same financial standards the
+  Internal Revenue Service applies when it collects unpaid taxes.</p>
 
-  This software was developed by Alex Kornya in partnership with Clark Management Consulting under an open source license. For a copy of the source code, please contact Alex Kornya or Clark Management Consulting.
+  <div class="atp-notice">
+  <p><strong>This is a demo.</strong> The final version is expected to be
+  released and hosted elsewhere later in 2025.</p>
+  <p>If you have feedback on how it could be better, email Alex Kornya at
+  <a href="mailto:alexkornya@justice4all.org">alexkornya@justice4all.org</a>.</p>
+  </div>
 
+  Under state and federal law, people can be ordered to pay "court debt" — money
+  owed because of their involvement in a criminal, civil, or juvenile case. It can
+  include fines and victim restitution, but also many different kinds of fees: for
+  the services of a court, a jail, an interpreter, or defense counsel appointed for
+  people who cannot otherwise pay. Depending on the state, some or all types of
+  court debt can only be charged to someone if they have the "ability to pay" them.
 
+  The law requires a court to work out someone's ability to pay before imposing,
+  modifying, or enforcing court debt, but it gives little guidance on what "ability
+  to pay" actually means. This calculator provides a concrete, evidence-based
+  determination by borrowing a long-standing model from the Internal Revenue
+  Service — the [collection financial standards](https://www.irs.gov/businesses/small-businesses-self-employed/collection-financial-standards).
+  These standards are based on periodically updated data from a number of federal
+  agencies, and they standardize the costs of housing, food, medicine,
+  transportation, and other basic necessities. That gives a realistic picture of
+  what it costs to maintain a household, without requiring the person, their
+  lawyer, or the court to go through a mountain of documentation of actual
+  expenses. The calculator also ensures that ability to pay amounts are not
+  artificially frozen at a level that is less than what is required to maintain
+  the basics.
+
+  <h2 class="atp-section">How to use this calculator</h2>
+
+  <ol class="atp-steps">
+  <li class="atp-step">
+  <div class="atp-step-head">
+  <span class="atp-step-title">Work out the ability to pay</span>
+  <span class="atp-time">3 to 5 minutes</span>
+  </div>
+  <p>Answer questions about the person's household, income, and expenses. The
+  calculator applies the IRS collection financial standards &mdash; the same ones
+  the IRS uses to decide whether to act on taxes owed to the federal government
+  &mdash; and returns a suggested monthly payment.</p>
+  </li>
+  <li class="atp-step">
+  <div class="atp-step-head">
+  <span class="atp-step-title">Produce a financial affidavit</span>
+  <span class="atp-time">5 to 10 minutes</span>
+  <span class="atp-optional">Optional</span>
+  </div>
+  <p>Creates an editable financial affidavit, which is required when asking a court
+  to reduce court debt resulting from a criminal conviction. You can file it
+  directly with the court. If you are a lawyer, you can ask your client to complete
+  it and the program will email the document to you for review.</p>
+  </li>
+  </ol>
+
+  <h2 class="atp-section">Who can use this calculator</h2>
+
+  <ul class="atp-audience">
+  <li>A person who is a defendant in a criminal, civil, or juvenile case</li>
+  <li>An attorney representing someone in such a case</li>
+  <li>A prosecutor seeking a position on ability to pay based on objective,
+  evidence-based information</li>
+  <li>A justice, judge, or magistrate</li>
+  <li>Members of the media</li>
+  <li>The general public</li>
+  <li>Anyone who wants an objective, evidence-based estimate of what someone can
+  afford to pay without facing financial hardship</li>
+  </ul>
+
+  <div class="atp-colophon">
+  <p>Developed by Alex Kornya in partnership with Clark Management Consulting under
+  an open source license. For a copy of the source code, please contact Alex Kornya
+  or Clark Management Consulting.</p>
+  </div>
 continue button field: intro

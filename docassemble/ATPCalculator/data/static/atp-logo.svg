@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img"
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+     viewBox="0 0 24 24" role="img"
      aria-label="Ability to Pay Calculator" fill="none">
   <title>Ability to Pay Calculator</title>
   <!-- The amount claimed: an outline, because it is only nominal. -->
